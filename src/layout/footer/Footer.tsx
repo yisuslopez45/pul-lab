@@ -1,4 +1,3 @@
-import { NavLink } from "react-router"
 
 const Footer = () => {
   return (
