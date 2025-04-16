@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+
 @theme {
-    --color-lila: #5B75FE;
+    --color-lila-100: #99A6D5;
+    --color-lila-600: #5B75FE;
+    --color-lila-900: #081225;
 }
