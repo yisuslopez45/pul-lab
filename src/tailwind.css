@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-lila-100: #99A6D5;
+    --color-lila-200: #7587EB;
+    --color-lila-600: #5B75FE;
+    --color-lila-700: #4355DA;
+    --color-lila-800: #4355DA;
+    --color-lila-900: #2A3895;
+}
