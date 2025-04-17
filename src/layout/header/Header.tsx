@@ -1,56 +1,11 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import Card from "../components/Card";
-
-{
-  /* <NavLink
-className="block py-2 px-3 text-white-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-to="/page-1"
-end
->
-Ruta 1
-</NavLink> */
-}
-
-{
-  /* <NavLink
-className="block py-2 px-3 text-white-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-to="/page-1"
-end
->
-Ruta 1
-</NavLink> */
-}
+import CardIU from "../components/CardIU";
+import { ListNavigationDisease, ListNavigationTest } from "../helpers/ListTabs";
+import Button from "../components/Button";
 
 const Header = () => {
-
-  const cardsData = [
-    {
-      id: 1,
-      title: "NEUMONIA",
-      description: "Descripción de la primera tarjeta",
-      imageUrl: "images/Lung.png"
-    },
-    {
-      id: 2,
-      title: "EPOC",
-      description: "Descripción de la segunda tarjeta",
-      imageUrl: "images/Lung.png"
-    },
-    {
-      id: 3,
-      title: "ASMA",
-      description: "Descripción de la segunda tarjeta",
-      imageUrl: "images/Lung.png"
-    },
-    {
-      id: 4,
-      title: "CANCER",
-      description: "Descripción de la segunda tarjeta",
-      imageUrl: "images/Lung.png"
-    }
-  ];
-
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const toggleDropdown = (name: string) => {
@@ -63,7 +18,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className=" relative border-gray-200 px-20 max-screen flex items-center justify-between mx-auto p-4">
+      <nav className=" relative border-gray-200 px-20 sm:max-w-full md:max-w-full lg:max-w-7xl flex items-center justify-between mx-auto p-4">
         <a
           href="https://flowbite.com/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -75,7 +30,7 @@ const Header = () => {
         </a>
 
         <div className="flex gap-3">
-          <ul className="flex gap-3">
+          <ul className=" flex gap-3">
             <li>
               <a
                 onClick={() => toggleDropdown("enfermedad")}
@@ -101,22 +56,27 @@ const Header = () => {
                 </svg>
               </a>
               {openDropdown === "enfermedad" && (
-                <div className="absolute w-['90%'] top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
-                  <div className="flex gap-4 p-10 justify-between">
-                      {cardsData.map((item) => (
+                <div className="absolute sm:max-w-full md:max-w-full lg:max-w-7xl top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
+                  <div className="flex gap-4 justify-between py-12 sm:px-10 md:px-15 lg-px-40 xl:px-40">
+                    {ListNavigationDisease.map((item) => (
+                      <NavLink to={item.to} end>
                         <Card
                           key={item.id}
                           title={item.title}
                           imageUrl={item.imageUrl}
                         />
-                      ))}
-                    </div>
+                      </NavLink>
+                    ))}
+                  </div>
                 </div>
               )}
             </li>
 
             <li>
-              <a className="bg-white p-2 rounded-3xl font-bold flex text-gray-800">
+              <a
+                onClick={() => toggleDropdown("quiz")}
+                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800"
+              >
                 QUIZ
                 <svg
                   className="w-6 h-6"
@@ -136,11 +96,27 @@ const Header = () => {
                   />
                 </svg>
               </a>
+              {openDropdown === "quiz" && (
+                <div className="absolute sm:max-w-full md:max-w-full lg:max-w-7xl top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
+                  <div className="flex gap-4  justify-between py-12 sm:px-10 md:px-15 lg-px-40 xl:px-40 ">
+                    {ListNavigationTest.map((item) => (
+                      <Card
+                        key={item.id}
+                        title={item.title}
+                        imageUrl={item.imageUrl}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </li>
 
             <li>
-              <a className="bg-white p-2 rounded-3xl font-bold flex text-gray-800">
-                ENFERMEDAD
+              <a
+                onClick={() => toggleDropdown("sobre")}
+                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800"
+              >
+                SOBRE
                 <svg
                   className="w-6 h-6"
                   aria-hidden="true"
@@ -159,6 +135,25 @@ const Header = () => {
                   />
                 </svg>
               </a>
+              {openDropdown === "sobre" && (
+                <div className="absolute sm:max-w-full md:max-w-full lg:max-w-7xl top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
+                  <div className="p-10">
+                    <CardIU title="Sobre Nosotros">
+                      <p className="font-bold uppercase">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      </p>
+                      <p className="font-bold uppercase">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor sit amet.
+                      </p>
+
+                      <div className="mt-6 flex justify-center">
+                        <Button />
+                      </div>
+                    </CardIU>
+                  </div>
+                </div>
+              )}
             </li>
           </ul>
 
@@ -182,22 +177,39 @@ const Header = () => {
             </svg>
           </div>
 
-          <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
-            <svg
-              className="w-6 h-6 text-gray-800"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z"
-                clip-rule="evenodd"
-              />
-            </svg>
+          <div
+            onClick={() => toggleDropdown("account")}
+            className="w-10 h-10 bg-white rounded-full flex justify-center items-center"
+          >
+            <div>
+              <svg
+                className=" text-gray-800"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            {openDropdown === "account" && (
+              <div className="absolute  lg:max-w-2xl  top-50 left-50 right-50  rounded-3xl shadow-lg bg-white   z-10  m-max">
+                <div className="">
+                  <CardIU title="Iniciar Sesion">
+                    <img src="/images/Google.png" className="w-52 h-52 m-auto" ></img>
+                    <div className="mt-6 flex justify-center">
+                      <Button />
+                    </div>
+                  </CardIU>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </nav>
