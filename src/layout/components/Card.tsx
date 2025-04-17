@@ -5,7 +5,7 @@ interface Props {
 
 const Card = ({ title, imageUrl }: Props) => {
   return (
-    <div className="max-w-lg  rounded overflow-hidden  shadow transition-shadow duration-200 cursor-pointer">
+    <div className="max-w-lg  rounded  cursor-pointer shadow-2xl ">
       <div className="bg-lila-600 rounded-t-2xl" >
         {imageUrl && (
           <img
