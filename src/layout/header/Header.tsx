@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
+// COMPONENTS
 import Card from "../components/Card";
 import CardIU from "../components/CardIU";
-import { ListNavigationDisease, ListNavigationTest } from "../helpers/ListTabs";
 import Button from "../components/Button";
+// HELPERS
+import { ListNavigationDisease, ListNavigationTest } from "../helpers/ListTabs";
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -19,15 +21,15 @@ const Header = () => {
   return (
     <header>
       <nav className=" relative border-gray-200 px-20 sm:max-w-full md:max-w-full lg:max-w-7xl flex items-center justify-between mx-auto p-4">
-        <a
-          href="https://flowbite.com/"
+        <NavLink
+           to={'/'} end
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img src="/Logo.svg" alt="Flowbite Logo" className="h-10 w-auto" />
           <span className="text-2xl font-semibold whitespace-nowrap dark:text-white">
             PulLab
           </span>
-        </a>
+        </NavLink>
 
         <div className="flex gap-3">
           <ul className=" flex gap-3">
@@ -137,8 +139,8 @@ const Header = () => {
               </a>
               {openDropdown === "sobre" && (
                 <div className="absolute sm:max-w-full md:max-w-full lg:max-w-7xl top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
-                  <div className="p-10">
-                    <CardIU title="Sobre Nosotros">
+                  <div className="p-4">
+                    <CardIU title="Sobre Nosotros" isShowClose={false} >
                       <p className="font-bold uppercase">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       </p>
@@ -148,7 +150,7 @@ const Header = () => {
                       </p>
 
                       <div className="mt-6 flex justify-center">
-                        <Button />
+                        <Button label="Saber Mas" color="amber" />
                       </div>
                     </CardIU>
                   </div>
@@ -204,7 +206,7 @@ const Header = () => {
                   <CardIU title="Iniciar Sesion">
                     <img src="/images/Google.png" className="w-52 h-52 m-auto" ></img>
                     <div className="mt-6 flex justify-center">
-                      <Button />
+                      <Button label="Iniciar con Goolge"  color="amber"  />
                     </div>
                   </CardIU>
                 </div>
