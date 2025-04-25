@@ -4,7 +4,7 @@ export const ListNavigationDisease = [
     title: "NEUMONIA",
     description: "Descripción de la primera tarjeta",
     imageUrl: "images/Lung.png",
-    to: "/page-1",
+    to: "/enfermedad-neumonia",
   },
   {
     id: 2,
@@ -18,14 +18,14 @@ export const ListNavigationDisease = [
     title: "ASMA",
     description: "Descripción de la segunda tarjeta",
     imageUrl: "images/Lung.png",
-    to: "/page-1",
+    to: "/page-3",
   },
   {
     id: 4,
     title: "CANCER",
     description: "Descripción de la segunda tarjeta",
     imageUrl: "images/Lung.png",
-    to: "/page-1",
+    to: "/page-4",
   },
 ];
 
