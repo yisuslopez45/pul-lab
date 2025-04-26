@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
 // COMPONENTS
 import Card from "../components/Card";
@@ -9,6 +9,7 @@ import { ListNavigationDisease, ListNavigationTest } from "../helpers/ListTabs";
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = (name: string) => {
     if (openDropdown === name) {
@@ -18,8 +19,22 @@ const Header = () => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
   return (
-    <header>
+    <header ref={headerRef} >
       <nav className=" relative border-gray-200 px-20 sm:max-w-full md:max-w-full lg:max-w-7xl flex items-center justify-between mx-auto p-4">
         <NavLink
            to={'/'} end
