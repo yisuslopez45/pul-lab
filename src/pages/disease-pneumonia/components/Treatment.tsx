@@ -18,4 +18,4 @@ const Treatment = () => {
   )
 }
 
-export default Treatment
+export default Treatment;
