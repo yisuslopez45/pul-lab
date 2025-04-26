@@ -18,7 +18,7 @@ export const ListNavigationDisease = [
     title: "ASMA",
     description: "Descripción de la segunda tarjeta",
     imageUrl: "images/Lung.png",
-    to: "/page-3",
+    to: "/enfermedad-asma",
   },
   {
     id: 4,

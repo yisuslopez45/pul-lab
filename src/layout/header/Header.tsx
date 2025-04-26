@@ -61,7 +61,7 @@ const Header = () => {
                 <div className="absolute sm:max-w-full md:max-w-full lg:max-w-7xl top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
                   <div className="flex gap-4 justify-between py-12 sm:px-10 md:px-15 lg-px-40 xl:px-40">
                     {ListNavigationDisease.map((item) => (
-                      <NavLink to={item.to} end>
+                      <NavLink to={item.to} end onClick={() => setOpenDropdown(null)}>
                         <Card
                           key={item.id}
                           title={item.title}
