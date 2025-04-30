@@ -51,7 +51,7 @@ const Header = () => {
             <li>
               <a
                 onClick={() => toggleDropdown("enfermedad")}
-                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800"
+                className="bg-white cursor-pointer p-2 rounded-3xl font-bold flex text-gray-800"
               >
                 ENFERMEDAD
                 <svg
@@ -92,7 +92,7 @@ const Header = () => {
             <li>
               <a
                 onClick={() => toggleDropdown("quiz")}
-                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800"
+                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800 cursor-pointer"
               >
                 QUIZ
                 <svg
@@ -131,7 +131,7 @@ const Header = () => {
             <li>
               <a
                 onClick={() => toggleDropdown("sobre")}
-                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800"
+                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800 cursor-pointer"
               >
                 SOBRE
                 <svg
@@ -174,7 +174,7 @@ const Header = () => {
             </li>
           </ul>
 
-          <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
+          <div className="w-10 h-10 bg-white rounded-full cursor-pointer flex justify-center items-center">
             <svg
               className="w-7 h-7 text-gray-800"
               aria-hidden="true"
@@ -196,7 +196,7 @@ const Header = () => {
 
           <div
             onClick={() => toggleDropdown("account")}
-            className="w-10 h-10 bg-white rounded-full flex justify-center items-center"
+            className="w-10 h-10 bg-white rounded-full cursor-pointer flex justify-center items-center"
           >
             <div>
               <svg
