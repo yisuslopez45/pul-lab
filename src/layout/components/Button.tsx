@@ -2,10 +2,12 @@
 type Colors = 'yellow' | 'amber' | 'blue' | 'indigo' | 'violet' | 'purple'  | 'red' 
 type Props = {
   label : string,
-  color? : Colors
+  color? : Colors,
+  onClick? : ()=>void,
+  className?: string
 }
 
-const Button : React.FC<Props> = ({ label = '' , color = 'blue'}) => {
+const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , className }) => {
 
   const colorVariants : Record<Colors, string> = {
     blue: "from-blue-500 to-blue-400  ",
@@ -18,7 +20,9 @@ const Button : React.FC<Props> = ({ label = '' , color = 'blue'}) => {
   };
   return (
     <button
+      onClick={onClick}
       className={`
+      ${className}
       relative
       px-10 py-4
       rounded-2xl
