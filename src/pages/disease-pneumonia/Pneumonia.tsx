@@ -15,7 +15,7 @@ const Pneumonia  = () => {
     <>
     <NavigationBars  items={menuItems2} className="mt-15" />
 
-    <div className="mt-12">
+    <div className="my-12">
         <Outlet />
     </div>
 

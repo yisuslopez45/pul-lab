@@ -30,7 +30,8 @@ createRoot(document.getElementById('root')!).render(
       <Route path="/" element={<App />} />
       
       <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
-        <Route path="que-es" element={<WhatIsPneumonia />} />
+        <Route index element={<Navigate to="que-es" replace />} />
+        <Route  path="que-es" element={<WhatIsPneumonia />} />
         <Route path="prevencion" element={<PreventionPneumonia />} />
         <Route path="sintomas" element={<SymptomsPneumonia />} />
         <Route path="tratamiento" element={<TreatmentPneumonia />} />
