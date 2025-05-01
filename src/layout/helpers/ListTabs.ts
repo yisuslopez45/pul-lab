@@ -8,10 +8,10 @@ export const ListNavigationDisease = [
   },
   {
     id: 2,
-    title: "EPOC",
+    title: "TUBERCULOSIS",
     description: "Descripción de la segunda tarjeta",
     imageUrl: "/images/Lung.png",
-    to: "/page-2",
+    to: "/enfermedad-tuberculosis",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export const ListNavigationTest = [
     },
     {
       id: 2,
-      title: "QUIZ EPOC",
+      title: "QUIZ TUBERCULOSIS",
       description: "Descripción de la segunda tarjeta",
       imageUrl: "/images/Quiz.png"
     },
