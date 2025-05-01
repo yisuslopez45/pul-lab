@@ -1,5 +1,5 @@
 
-type Colors = 'yellow' | 'amber' | 'blue' | 'indigo' | 'violet' | 'purple'  | 'red' 
+type Colors = 'yellow' | 'amber' | 'blue' | 'indigo' | 'violet' | 'purple'  | 'red' | 'green'
 type Props = {
   label : string,
   color? : Colors,
@@ -17,6 +17,7 @@ const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , cla
     amber: "from-amber-500 to-amber-400 ",
     yellow:"from-yellow-500 to-yellow-400 ",
     violet:"from-violet-500 to-violet-400 ",
+    green:"from-green-500 to-green-400 ",
   };
   return (
     <button
