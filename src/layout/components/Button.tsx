@@ -3,7 +3,7 @@ type Colors = 'yellow' | 'amber' | 'blue' | 'indigo' | 'violet' | 'purple'  | 'r
 type Props = {
   label : string,
   color? : Colors,
-  onClick? : ()=>void,
+  onClick? : (e: React.MouseEvent<HTMLButtonElement>)=>void,
   className?: string
 }
 
