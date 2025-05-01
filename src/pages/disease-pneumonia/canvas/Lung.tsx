@@ -1,5 +1,5 @@
 import { Suspense, useCallback } from "react";
-import { OrbitControls, Environment, Html, Sky } from "@react-three/drei";
+import { OrbitControls, Environment, Html } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import LungModel from "../models-3d/LungModel";
 import useStoreLung from "../store/useStoreLung";
