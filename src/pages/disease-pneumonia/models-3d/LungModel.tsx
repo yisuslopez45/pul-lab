@@ -17,10 +17,16 @@ export default function LungModel(props: JSX.IntrinsicElements['group']) {
   const { actions } = useAnimations(animations, group)
 
   useEffect(() => {
-    if (actions.BeatingLung && actions.BeatingDiaphragm && isActiveAnimation) {
+    if(!actions.BeatingLung || !actions.BeatingDiaphragm) return
+
+    if (isActiveAnimation) {
       actions.BeatingLung.play();
-      actions.BeatingDiaphragm?.play()
+      actions.BeatingDiaphragm.play()
+    }else{
+      actions.BeatingLung?.stop()
+      actions.BeatingDiaphragm?.stop()
     }
+    
   }, [actions, isActiveAnimation]);
 
   return (
