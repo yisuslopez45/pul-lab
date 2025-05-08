@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
 // COMPONENTS
 import Card from "../components/Card";
@@ -9,6 +9,7 @@ import { ListNavigationDisease, ListNavigationTest } from "../helpers/ListTabs";
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = (name: string) => {
     if (openDropdown === name) {
@@ -18,8 +19,22 @@ const Header = () => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
   return (
-    <header>
+    <header ref={headerRef} >
       <nav className=" relative border-gray-200 px-20 sm:max-w-full md:max-w-full lg:max-w-7xl flex items-center justify-between mx-auto p-4">
         <NavLink
            to={'/'} end
@@ -36,7 +51,7 @@ const Header = () => {
             <li>
               <a
                 onClick={() => toggleDropdown("enfermedad")}
-                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800"
+                className="bg-white cursor-pointer p-2 rounded-3xl font-bold flex text-gray-800"
               >
                 ENFERMEDAD
                 <svg
@@ -61,7 +76,7 @@ const Header = () => {
                 <div className="absolute sm:max-w-full md:max-w-full lg:max-w-7xl top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
                   <div className="flex gap-4 justify-between py-12 sm:px-10 md:px-15 lg-px-40 xl:px-40">
                     {ListNavigationDisease.map((item) => (
-                      <NavLink to={item.to} end>
+                      <NavLink to={item.to} end onClick={() => setOpenDropdown(null)}>
                         <Card
                           key={item.id}
                           title={item.title}
@@ -77,7 +92,7 @@ const Header = () => {
             <li>
               <a
                 onClick={() => toggleDropdown("quiz")}
-                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800"
+                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800 cursor-pointer"
               >
                 QUIZ
                 <svg
@@ -116,7 +131,7 @@ const Header = () => {
             <li>
               <a
                 onClick={() => toggleDropdown("sobre")}
-                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800"
+                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800 cursor-pointer"
               >
                 SOBRE
                 <svg
@@ -159,7 +174,7 @@ const Header = () => {
             </li>
           </ul>
 
-          <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
+          <div className="w-10 h-10 bg-white rounded-full cursor-pointer flex justify-center items-center">
             <svg
               className="w-7 h-7 text-gray-800"
               aria-hidden="true"
@@ -181,7 +196,7 @@ const Header = () => {
 
           <div
             onClick={() => toggleDropdown("account")}
-            className="w-10 h-10 bg-white rounded-full flex justify-center items-center"
+            className="w-10 h-10 bg-white rounded-full cursor-pointer flex justify-center items-center"
           >
             <div>
               <svg

@@ -1,6 +1,6 @@
 // import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
 import Layout from './layout/Layout'
 // PAGES
 import App from './App'
@@ -22,12 +22,28 @@ import RiskFactorsLungCancer from './pages/disease-cancer/components/RiskFactors
 import TreatmentLungCancer from './pages/disease-cancer/components/Treatment'
 import PreventionLungCancer from './pages/disease-cancer/components/prevention'
 
+// asthma
+import WhatIsAsthma from './pages/disease-asthma/components/WhatIs' 
+import PreventionAsthma from './pages/disease-asthma/components/Prevention'
+import SymptomsAsthma from './pages/disease-asthma/components/Symptoms'
+import TreatmentAsthma from './pages/disease-asthma/components/Treatment'
+import Asthma from './pages/disease-asthma/Asthma'
+
+// Tuberculosis
+import WhatIsTuberculosis from './pages/disease-tuberculosis/components/WhatIs' 
+import PreventionTuberculosis from './pages/disease-tuberculosis/components/Prevention'
+import SymptomsTuberculosis from './pages/disease-tuberculosis/components/Symptoms'
+import TreatmentTuberculosis from './pages/disease-tuberculosis/components/Treatment'
+import Tuberculosis from './pages/disease-tuberculosis/Tuberculosis'
+
+
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
   <Layout>
     <Routes>
       <Route path="/" element={<App />} />
       
+      vlmm
       <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
         <Route path="que-es" element={<WhatIsPneumonia />} />
         <Route path="prevencion" element={<PreventionPneumonia />} />
@@ -42,6 +58,30 @@ createRoot(document.getElementById('root')!).render(
           <Route path="factores-riesgo" element={<RiskFactorsLungCancer />} />
           <Route path="tratamiento" element={<TreatmentLungCancer />} />
           <Route path="prevencion" element={<PreventionLungCancer />} />
+
+        <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
+          <Route index element={<Navigate to="que-es" replace />} />
+          <Route  path="que-es" element={<WhatIsPneumonia />} />
+          <Route path="prevencion" element={<PreventionPneumonia />} />
+          <Route path="sintomas" element={<SymptomsPneumonia />} />
+          <Route path="tratamiento" element={<TreatmentPneumonia />} />
+        </Route>
+
+        <Route path="/enfermedad-asma" element={<Asthma />}>
+          <Route index element={<Navigate to="que-es" replace />} />
+          <Route path="que-es" element={<WhatIsAsthma />} />
+          <Route path="prevencion" element={<PreventionAsthma />} />
+          <Route path="sintomas" element={<SymptomsAsthma />} />
+          <Route path="tratamiento" element={<TreatmentAsthma />} />
+        </Route>
+
+        <Route path="/enfermedad-tuberculosis" element={<Tuberculosis />}>
+          <Route index element={<Navigate to="que-es" replace />} />
+          <Route path="que-es" element={<WhatIsTuberculosis />} />
+          <Route path="prevencion" element={<PreventionTuberculosis />} />
+          <Route path="sintomas" element={<SymptomsTuberculosis />} />
+          <Route path="tratamiento" element={<TreatmentTuberculosis />} />
+ main
         </Route>
       
       <Route path="/page-2" element={<Page2 />} />

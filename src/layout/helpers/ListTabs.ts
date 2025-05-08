@@ -3,29 +3,34 @@ export const ListNavigationDisease = [
     id: 1,
     title: "NEUMONIA",
     description: "Descripción de la primera tarjeta",
-    imageUrl: "images/Lung.png",
+    imageUrl: "/images/Lung.png",
     to: "/enfermedad-neumonia",
   },
   {
     id: 2,
-    title: "EPOC",
+    title: "TUBERCULOSIS",
     description: "Descripción de la segunda tarjeta",
-    imageUrl: "images/Lung.png",
-    to: "/page-2",
+    imageUrl: "/images/Lung.png",
+    to: "/enfermedad-tuberculosis",
   },
   {
     id: 3,
     title: "ASMA",
     description: "Descripción de la segunda tarjeta",
-    imageUrl: "images/Lung.png",
-    to: "/page-3",
+    imageUrl: "/images/Lung.png",
+    to: "/enfermedad-asma",
   },
   {
     id: 4,
     title: "CANCER",
     description: "Descripción de la segunda tarjeta",
+ vlmm
     imageUrl: "images/Lung.png",
     to: "/enfermedad-cancer",
+
+    imageUrl: "/images/Lung.png",
+    to: "/page-4",
+    main
   },
 ];
 
@@ -35,24 +40,24 @@ export const ListNavigationTest = [
       id: 1,
       title: "QUIZ NEUMONIA",
       description: "Descripción de la primera tarjeta",
-      imageUrl: "images/Quiz.png"
+      imageUrl: "/images/Quiz.png"
     },
     {
       id: 2,
-      title: "QUIZ EPOC",
+      title: "QUIZ TUBERCULOSIS",
       description: "Descripción de la segunda tarjeta",
-      imageUrl: "images/Quiz.png"
+      imageUrl: "/images/Quiz.png"
     },
     {
       id: 3,
       title: "QUIZ ASMA",
       description: "Descripción de la segunda tarjeta",
-      imageUrl: "images/Quiz.png"
+      imageUrl: "/images/Quiz.png"
     },
     {
       id: 4,
       title: "QUIZ CANCER",
       description: "Descripción de la segunda tarjeta",
-      imageUrl: "images/Quiz.png"
+      imageUrl: "/images/Quiz.png"
     }
   ];

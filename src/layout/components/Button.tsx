@@ -1,11 +1,13 @@
 
-type Colors = 'yellow' | 'amber' | 'blue' | 'indigo' | 'violet' | 'purple'  | 'red' 
+type Colors = 'yellow' | 'amber' | 'blue' | 'indigo' | 'violet' | 'purple'  | 'red' | 'green'
 type Props = {
   label : string,
-  color? : Colors
+  color? : Colors,
+  onClick? : (e: React.MouseEvent<HTMLButtonElement>)=>void,
+  className?: string
 }
 
-const Button : React.FC<Props> = ({ label = '' , color = 'blue'}) => {
+const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , className }) => {
 
   const colorVariants : Record<Colors, string> = {
     blue: "from-blue-500 to-blue-400  ",
@@ -15,10 +17,13 @@ const Button : React.FC<Props> = ({ label = '' , color = 'blue'}) => {
     amber: "from-amber-500 to-amber-400 ",
     yellow:"from-yellow-500 to-yellow-400 ",
     violet:"from-violet-500 to-violet-400 ",
+    green:"from-green-500 to-green-400 ",
   };
   return (
     <button
+      onClick={onClick}
       className={`
+      ${className}
       relative
       px-10 py-4
       rounded-2xl

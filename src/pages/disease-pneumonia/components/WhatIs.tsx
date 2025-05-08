@@ -1,3 +1,5 @@
+import LungPneumoniaCanva from "../canvas/LungPneumoniaCanva";
+
 const WhatIs = () => {
   return (
     <>
@@ -7,10 +9,11 @@ const WhatIs = () => {
             ¿Que es la Neumonia?
           </h2>
         </div>
-        <div className="mt-6 grid text-center gap-4 p-4 bg-indigo-950 rounded border-2 border-indigo-800">
+        <div className="mt-6  text-center p-4 bg-indigo-950 rounded border-2 border-indigo-800">
           <p className="text-indigo-200">
           Inflamación grave de los pulmones en la que los alvéolos (bolsas diminutas de aire) están llenos de líquido. Esto puede causar una disminución en la cantidad de oxígeno que la sangre absorbe del aire que entra al pulmón en la respiración. Por lo general, la causa de la neumonía es una infección, pero a veces también se debe a la radioterapia, una alergia o la irritación del tejido del pulmón por las sustancias inhaladas. Es posible que afecte una parte o la totalidad de los pulmones. También se llama pulmonía.
           </p>
+          <LungPneumoniaCanva/>
         </div>
       </div>
     </>
