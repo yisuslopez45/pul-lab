@@ -1,5 +1,5 @@
 import { Suspense, useState } from "react";
-import { OrbitControls, Environment, Html } from "@react-three/drei";
+import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Vector3 } from 'three';
 import { LungAsthmaModel } from "../models-3d/LungAsthmaModel";
