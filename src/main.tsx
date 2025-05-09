@@ -44,7 +44,7 @@ createRoot(document.getElementById('root')!).render(
     <Routes>
       <Route path="/" element={<App />} />
       
-      vlmm
+      
       <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
         <Route path="que-es" element={<WhatIsPneumonia />} />
         <Route path="prevencion" element={<PreventionPneumonia />} />
@@ -54,11 +54,13 @@ createRoot(document.getElementById('root')!).render(
 
        {/* Rutas para Cáncer de Pulmón */}
        <Route path="/enfermedad-cancer" element={<LungCancer />}>
-          <Route path="que-es" element={<WhatIsLungCancer />} />
-          <Route path="sintomas" element={<SymptomsLungCancer />} />
-          <Route path="factores-riesgo" element={<RiskFactorsLungCancer />} />
-          <Route path="tratamiento" element={<TreatmentLungCancer />} />
-          <Route path="prevencion" element={<PreventionLungCancer />} />
+  <Route path="que-es" element={<WhatIsLungCancer />} />
+  <Route path="sintomas" element={<SymptomsLungCancer />} />
+  <Route path="factores-riesgo" element={<RiskFactorsLungCancer />} />
+  <Route path="tratamiento" element={<TreatmentLungCancer />} />
+  <Route path="prevencion" element={<PreventionLungCancer />} />
+</Route>
+
 
         <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
           <Route index element={<Navigate to="que-es" replace />} />
@@ -82,7 +84,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="prevencion" element={<PreventionTuberculosis />} />
           <Route path="sintomas" element={<SymptomsTuberculosis />} />
           <Route path="tratamiento" element={<TreatmentTuberculosis />} />
- main
+ 
         </Route>
       
       <Route path="/page-2" element={<Page2 />} />
