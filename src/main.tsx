@@ -20,7 +20,8 @@ import WhatIsLungCancer from './pages/disease-cancer/components/Whatis'
 import SymptomsLungCancer from './pages/disease-cancer/components/Symptoms'
 import RiskFactorsLungCancer from './pages/disease-cancer/components/RiskFactors';
 import TreatmentLungCancer from './pages/disease-cancer/components/Treatment'
-import PreventionLungCancer from './pages/disease-cancer/components/prevention'
+import PreventionLungCancer from './pages/disease-cancer/components/Prevention'
+
 
 // asthma
 import WhatIsAsthma from './pages/disease-asthma/components/WhatIs' 

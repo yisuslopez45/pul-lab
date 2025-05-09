@@ -1,4 +1,4 @@
-import { TestTube2, LucideShieldQuestion, Pill, Carrot, Cigarette, HeartPulse } from "lucide-react";
+import { LucideShieldQuestion, Pill, Carrot, Cigarette, HeartPulse } from "lucide-react";
 import NavigationBars from "../../layout/components/NavigationBars";
 import { Outlet } from "react-router";
 
