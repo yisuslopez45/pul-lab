@@ -1,4 +1,4 @@
-const Symptoms = () => {
+export const SymptomsLungCancer = () => {
   return (
     <>
       <div className="mt-12 w-full p-6 bg-indigo-900/80 rounded-lg border-4 border-indigo-700">
@@ -30,4 +30,4 @@ const Symptoms = () => {
   );
 };
 
-export default Symptoms;
+export default SymptomsLungCancer;

@@ -5,6 +5,7 @@ import Layout from './layout/Layout'
 // PAGES
 import App from './App'
 import Pneumonia from './pages/disease-pneumonia/Pneumonia'
+import LungCancer from './pages/disease-cancer/LungCancer'
 import Page2 from './pages/page-2/Page2'
 import NotFound from './pages/not-found/NotFound'
 
@@ -13,6 +14,13 @@ import WhatIsPneumonia from './pages/disease-pneumonia/components/WhatIs'
 import PreventionPneumonia from './pages/disease-pneumonia/components/Prevention'
 import SymptomsPneumonia from './pages/disease-pneumonia/components/Symptoms'
 import TreatmentPneumonia from './pages/disease-pneumonia/components/Treatment'
+
+// Lung Cancer Components
+import WhatIsLungCancer from './pages/disease-cancer/components/Whatis'
+import SymptomsLungCancer from './pages/disease-cancer/components/Symptoms'
+import RiskFactorsLungCancer from './pages/disease-cancer/components/RiskFactors';
+import TreatmentLungCancer from './pages/disease-cancer/components/Treatment'
+import PreventionLungCancer from './pages/disease-cancer/components/Prevention'
 
 
 // asthma
@@ -36,6 +44,24 @@ createRoot(document.getElementById('root')!).render(
     <Routes>
       <Route path="/" element={<App />} />
       
+      
+      <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
+        <Route path="que-es" element={<WhatIsPneumonia />} />
+        <Route path="prevencion" element={<PreventionPneumonia />} />
+        <Route path="sintomas" element={<SymptomsPneumonia />} />
+        <Route path="tratamiento" element={<TreatmentPneumonia />} />
+      </Route>
+
+       {/* Rutas para Cáncer de Pulmón */}
+       <Route path="/enfermedad-cancer" element={<LungCancer />}>
+  <Route path="que-es" element={<WhatIsLungCancer />} />
+  <Route path="sintomas" element={<SymptomsLungCancer />} />
+  <Route path="factores-riesgo" element={<RiskFactorsLungCancer />} />
+  <Route path="tratamiento" element={<TreatmentLungCancer />} />
+  <Route path="prevencion" element={<PreventionLungCancer />} />
+</Route>
+
+
         <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
           <Route index element={<Navigate to="que-es" replace />} />
           <Route  path="que-es" element={<WhatIsPneumonia />} />
@@ -58,6 +84,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="prevencion" element={<PreventionTuberculosis />} />
           <Route path="sintomas" element={<SymptomsTuberculosis />} />
           <Route path="tratamiento" element={<TreatmentTuberculosis />} />
+ 
         </Route>
       
       <Route path="/page-2" element={<Page2 />} />
