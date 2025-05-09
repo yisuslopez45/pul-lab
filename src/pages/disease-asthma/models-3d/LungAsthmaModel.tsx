@@ -7,7 +7,6 @@ import { JSX } from 'react';
 export function LungAsthmaModel(props: JSX.IntrinsicElements['group']) {
   const groupRef = useRef<Group>(null);
   const [isRotating, setIsRotating] = useState(false);
-  const [rotationStart, setRotationStart] = useState(0);
   const [rotationEnd, setRotationEnd] = useState(0);
 
   const { nodes, materials } = useGLTF('/models-3d/asthma/Lungs.glb') as unknown as {
@@ -36,10 +35,9 @@ export function LungAsthmaModel(props: JSX.IntrinsicElements['group']) {
 
   const handleClick = () => {
     if (!groupRef.current || isRotating) return;
-
+  
     const currentY = groupRef.current.rotation.y;
-    const newEnd = currentY + Math.PI * 2; 
-    setRotationStart(currentY);
+    const newEnd = currentY + Math.PI * 2; // 360°
     setRotationEnd(newEnd);
     setIsRotating(true);
   };
