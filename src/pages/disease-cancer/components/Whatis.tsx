@@ -1,3 +1,5 @@
+import LungCancerCanva from "../canvas/LungCancerCanva";
+
 const WhatIsLungCancer = () => {
   return (
     <>
@@ -37,6 +39,7 @@ const WhatIsLungCancer = () => {
             <p className="text-red-200 mt-6 text-center text-sm italic">
               <strong>Nota:</strong> El 80-90% de los casos están asociados al tabaquismo, pero también existen factores como contaminación, asbestos y predisposición genética.
             </p>
+            <LungCancerCanva/>
           </div>
         </div>
       </div>
