@@ -56,7 +56,7 @@ const Lung = () => {
                 />
                 <Environment preset="city" background={false} />
                 <LungModel  scale={30} position={[0,0.6,0.8]} castShadow  />
-                {clicked && (
+                {/* {clicked && (
                 <>
                     <AlertText3D 
                         text={`Presione`} 
@@ -72,9 +72,9 @@ const Lung = () => {
                         position={ [0, -0.3, 2]}   
                     />
                 </>
-                )}
+                )} */}
 
-                {!clicked && (
+                {/* {!clicked && (
                 <>
                     <AlertText3D 
                         text={`< gire >`} 
@@ -83,7 +83,7 @@ const Lung = () => {
                         position={ [0, -1.8, 2]} 
                     />
                 </>
-                )}
+                )} */}
 
                 <FloorModel color="#3F72AF" position={position} metalnesVal={1} roughness={0.7}  />
             </Canvas>
