@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useState } from "react";
+import { Suspense, useCallback } from "react";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import LungModel from "../models-3d/LungModel";
@@ -13,20 +13,23 @@ import Spinner from "../../../layout/components/Spinner";
 const Lung = () => {
     const { setStateAnimation , isActiveAnimation} = useStoreLung()
     const position: Vector3 = new Vector3(0,-2.3,0)
-    const [clicked, setClicked] = useState(true)
+    // const [clicked, setClicked] = useState(true)
     
     const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         setStateAnimation(!isActiveAnimation);
     }, [setStateAnimation, isActiveAnimation]);
 
-    const handleOnPointerClick = useCallback(() => {
-        setClicked(false)
-    }, []);
+    //  #### SPRINT 2 ###########
+    // const handleOnPointerClick = useCallback(() => {
+    //     setClicked(false)
+    // }, []);
 
-    const handleOnPointerClickDown = useCallback(() => {
-        setClicked(true)
-    }, []);
+    // const handleOnPointerClickDown = useCallback(() => {
+    //     setClicked(true)
+    // }, []);
+
+    // onPointerDown={handleOnPointerClick} onPointerUp={handleOnPointerClickDown}
 
 
     return (
@@ -39,7 +42,7 @@ const Lung = () => {
                 label="Interactuar" 
                 color={!isActiveAnimation ? 'amber' : 'green' } 
             />
-            <Canvas camera={{ position: [2, 0, 6] }}  style={{ height: "70vh", width: "100%" }} shadows={true} onPointerDown={handleOnPointerClick} onPointerUp={handleOnPointerClickDown}  >
+            <Canvas camera={{ position: [2, 0, 6] }}  style={{ height: "70vh", width: "100%" }} shadows={true}   >
           
                 <OrbitControls 
                     enableZoom={true} 
