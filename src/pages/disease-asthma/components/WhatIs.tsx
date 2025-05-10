@@ -1,3 +1,5 @@
+import AsthmaCanva from "../canvas/asthmaCanva";
+
 const WhatIs = () => {
   return (
     <>
@@ -18,6 +20,9 @@ const WhatIs = () => {
             El asma puede ser desencadenada por factores genéticos y ambientales. Los episodios de asma 
             z(crisis asmáticas) pueden variar en intensidad y duración, y pueden ser peligrosos si no se tratan a tiempo.
         </p>
+      </div>
+      <div>
+        <AsthmaCanva/>
       </div>
     </div >
     </>
