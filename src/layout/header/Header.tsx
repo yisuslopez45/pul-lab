@@ -21,7 +21,10 @@ const Header = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+      if (
+        headerRef.current &&
+        !headerRef.current.contains(event.target as Node)
+      ) {
         setOpenDropdown(null);
       }
     };
@@ -32,12 +35,12 @@ const Header = () => {
     };
   }, []);
 
-
   return (
-    <header ref={headerRef} >
+    <header ref={headerRef}>
       <nav className=" relative border-gray-200 px-20 sm:max-w-full md:max-w-full lg:max-w-7xl flex items-center justify-between mx-auto p-4">
         <NavLink
-           to={'/'} end
+          to={"/"}
+          end
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img src="/Logo.svg" alt="Flowbite Logo" className="h-10 w-auto" />
@@ -76,7 +79,11 @@ const Header = () => {
                 <div className="absolute sm:max-w-full md:max-w-full lg:max-w-7xl top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
                   <div className="flex gap-4 justify-between py-12 sm:px-10 md:px-15 lg-px-40 xl:px-40">
                     {ListNavigationDisease.map((item) => (
-                      <NavLink to={item.to} end onClick={() => setOpenDropdown(null)}>
+                      <NavLink
+                        to={item.to}
+                        end
+                        onClick={() => setOpenDropdown(null)}
+                      >
                         <Card
                           key={item.id}
                           title={item.title}
@@ -155,18 +162,33 @@ const Header = () => {
               {openDropdown === "sobre" && (
                 <div className="absolute sm:max-w-full md:max-w-full lg:max-w-7xl top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
                   <div className="p-4">
-                    <CardIU title="Sobre Nosotros" isShowClose={false} >
-                      <p className="font-bold uppercase">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      </p>
-                      <p className="font-bold uppercase">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Lorem ipsum dolor sit amet.
+                    <CardIU title="Sobre Nosotros" isShowClose={false}>
+                      <p className="font-bold text-justify">
+                        Somos un grupo de desarrollo de la Universidad del
+                        Valle, apasionados por la tecnología y la innovación.
+                        Como parte de un proyecto académico, desarrollamos una
+                        representación en 3D del pulmón utilizando la librería
+                        Three.js, con el objetivo de facilitar el aprendizaje
+                        visual sobre el sistema respiratorio y explorar nuevas
+                        formas de interacción educativa mediante gráficos
+                        tridimensionales en la web.
                       </p>
 
-                      <div className="mt-6 flex justify-center">
-                        <Button label="Saber Mas" color="amber" />
+                      <div className="p-4 bg-indigo-900/80 rounded-lg border-2 border-indigo-700 mt-6">
+                        <h3 className="font-bold text-yellow-300 mb-3 text-center">
+                          Integrantes
+                        </h3>
+                        <ul className="list-disc list-inside text-red-200 space-y-2 text-left text-sm">
+                          <li>Jesus David Betancourth Lopez</li>
+                          <li>Esteban Camilo Martinez Urbano</li>
+                          <li>Victoria Liceth Mulcue</li>
+                          <li>Arango Nieves Gustavo Adolfo</li>
+                        </ul>
                       </div>
+
+                      {/* <div className="mt-6 flex justify-center">
+                        <Button label="Saber Mas" color="amber" />
+                      </div> */}
                     </CardIU>
                   </div>
                 </div>
@@ -219,9 +241,12 @@ const Header = () => {
               <div className="absolute  lg:max-w-2xl  top-50 left-50 right-50  rounded-3xl shadow-lg bg-white   z-10  m-max">
                 <div className="">
                   <CardIU title="Iniciar Sesion">
-                    <img src="/images/Google.png" className="w-52 h-52 m-auto" ></img>
+                    <img
+                      src="/images/Google.png"
+                      className="w-52 h-52 m-auto"
+                    ></img>
                     <div className="mt-6 flex justify-center">
-                      <Button label="Iniciar con Goolge"  color="amber"  />
+                      <Button label="Iniciar con Goolge" color="amber" />
                     </div>
                   </CardIU>
                 </div>
