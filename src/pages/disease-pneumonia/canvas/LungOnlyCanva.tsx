@@ -27,7 +27,7 @@ const Lung = () => {
                      castShadow={true}
                 />
                 <Environment preset="city" background={false} />
-                <LungModel  scale={45} position={[0,0.6,0.8]} castShadow  />
+                <LungModel  scale={35} position={[0,0.6,0.8]} castShadow  />
               
             </Canvas>
 
