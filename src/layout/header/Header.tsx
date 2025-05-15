@@ -85,6 +85,7 @@ const Header = () => {
                         onClick={() => setOpenDropdown(null)}
                       >
                         <Card
+                          className="hover:-translate-y-1 transition-transform duration-200"
                           key={item.id}
                           title={item.title}
                           imageUrl={item.imageUrl}
@@ -125,6 +126,7 @@ const Header = () => {
                   <div className="flex gap-4  justify-between py-12 sm:px-10 md:px-15 lg-px-40 xl:px-40 ">
                     {ListNavigationTest.map((item) => (
                       <Card
+                        className="hover:-translate-y-1 transition-transform duration-200"
                         key={item.id}
                         title={item.title}
                         imageUrl={item.imageUrl}
