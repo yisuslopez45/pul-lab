@@ -1,3 +1,5 @@
+import SymptomCanva from "../canvas/SymptomCanva";
+
 export const SymptomsLungCancer = () => {
   return (
     <>
@@ -14,7 +16,7 @@ export const SymptomsLungCancer = () => {
             líquido o pus, lo que causa síntomas como:
           </p>
 
-          <ul className="text-indigo-200 space-y-2 ms-5 mt-4">
+          <ul className="text-indigo-200 space-y-2 ms-5 mt-4 mb-5">
             <li className="list-disc">
               Tos, a veces con flema o mucosidad
             </li>
@@ -24,6 +26,8 @@ export const SymptomsLungCancer = () => {
               Dolor en el pecho al respirar o toser
             </li>
           </ul>
+
+          <SymptomCanva  />
         </div>
       </div>
     </>
