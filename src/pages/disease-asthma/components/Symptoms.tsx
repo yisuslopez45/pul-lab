@@ -1,3 +1,5 @@
+import PersonAsthmaCanva from "../canvas/PersonAsthmaCanva";
+
 const Symptoms = () => {
   return (
     <>
@@ -25,6 +27,8 @@ const Symptoms = () => {
             Durante una crisis asmática, estos síntomas se intensifican y pueden volverse peligrosos si no 
             se administran medicamentos de forma oportuna.
           </p>
+
+          <PersonAsthmaCanva/>
         </div>
       </div>
     </>
