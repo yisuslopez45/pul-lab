@@ -5,7 +5,7 @@ import LungModel from "../models-3d/LungModel";
 import useStoreLung from "../store/useStoreLung";
 import Button from "../../../layout/components/Button";
 import FloorModel from "../models-3d/FloorModel";
-import { Vector3 } from 'three';
+// import { Vector3 } from 'three';
 import Spinner from "../../../layout/components/Spinner";
 // import AlertText3D from "../texts/AlertText3D";
 
