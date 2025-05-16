@@ -12,7 +12,6 @@ import Spinner from "../../../layout/components/Spinner";
 
 const Lung = () => {
     const { setStateAnimation , isActiveAnimation} = useStoreLung()
-    const position: Vector3 = new Vector3(0,-2.3,0)
     // const [clicked, setClicked] = useState(true)
     
     const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
@@ -88,7 +87,7 @@ const Lung = () => {
                 </>
                 )} */}
 
-                <FloorModel color="#3F72AF" position={position} metalnesVal={1} roughness={0.7}  />
+                <FloorModel  />
             </Canvas>
 
         </Suspense>
