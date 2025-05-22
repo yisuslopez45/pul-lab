@@ -3,13 +3,13 @@ import { NavLink } from "react-router";
 // COMPONENTS
 import Card from "../components/Card";
 import CardIU from "../components/CardIU";
-import Button from "../components/Button";
 // HELPERS
 import { ListNavigationDisease, ListNavigationTest } from "../helpers/ListTabs";
+import SignIn from "./SignIn";
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);  
 
   const toggleDropdown = (name: string) => {
     if (openDropdown === name) {
@@ -242,15 +242,7 @@ const Header = () => {
             {openDropdown === "account" && (
               <div className="absolute  lg:max-w-2xl  top-50 left-50 right-50  rounded-3xl shadow-lg bg-white   z-10  m-max">
                 <div className="">
-                  <CardIU title="Iniciar Sesion">
-                    <img
-                      src="/images/Google.png"
-                      className="w-52 h-52 m-auto"
-                    ></img>
-                    <div className="mt-6 flex justify-center">
-                      <Button label="Iniciar con Goolge" color="amber" />
-                    </div>
-                  </CardIU>
+                  <SignIn/>
                 </div>
               </div>
             )}
