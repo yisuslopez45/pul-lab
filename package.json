@@ -15,6 +15,7 @@
     "@react-three/postprocessing": "^3.0.4",
     "@tailwindcss/vite": "^4.0.8",
     "drei": "^2.2.21",
+    "firebase": "^11.8.1",
     "lucide-react": "^0.503.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
