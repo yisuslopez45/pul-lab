@@ -36,6 +36,7 @@ import PreventionTuberculosis from './pages/disease-tuberculosis/components/Prev
 import SymptomsTuberculosis from './pages/disease-tuberculosis/components/Symptoms'
 import TreatmentTuberculosis from './pages/disease-tuberculosis/components/Treatment'
 import Tuberculosis from './pages/disease-tuberculosis/Tuberculosis'
+import Profile from './pages/profile/Profile'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -43,23 +44,16 @@ createRoot(document.getElementById('root')!).render(
   <Layout>
     <Routes>
       <Route path="/" element={<App />} />
+       <Route path="/perfil" element={<Profile />} />
       
-      
-      <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
-        <Route path="que-es" element={<WhatIsPneumonia />} />
-        <Route path="prevencion" element={<PreventionPneumonia />} />
-        <Route path="sintomas" element={<SymptomsPneumonia />} />
-        <Route path="tratamiento" element={<TreatmentPneumonia />} />
-      </Route>
-
        {/* Rutas para Cáncer de Pulmón */}
-       <Route path="/enfermedad-cancer" element={<LungCancer />}>
-  <Route path="que-es" element={<WhatIsLungCancer />} />
-  <Route path="sintomas" element={<SymptomsLungCancer />} />
-  <Route path="factores-riesgo" element={<RiskFactorsLungCancer />} />
-  <Route path="tratamiento" element={<TreatmentLungCancer />} />
-  <Route path="prevencion" element={<PreventionLungCancer />} />
-</Route>
+      <Route path="/enfermedad-cancer" element={<LungCancer />}>
+        <Route path="que-es" element={<WhatIsLungCancer />} />
+        <Route path="sintomas" element={<SymptomsLungCancer />} />
+        <Route path="factores-riesgo" element={<RiskFactorsLungCancer />} />
+        <Route path="tratamiento" element={<TreatmentLungCancer />} />
+        <Route path="prevencion" element={<PreventionLungCancer />} />
+      </Route>
 
 
         <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
