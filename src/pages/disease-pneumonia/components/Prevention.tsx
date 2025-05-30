@@ -1,3 +1,4 @@
+import PreventionCanva from "../canvas/PreventionCanva"
 
 const Prevention = () => {
   return (
@@ -12,6 +13,7 @@ const Prevention = () => {
         <p className="text-indigo-200 text-center">
         Una buena higiene (lavarse las manos con frecuencia), dejar de fumar y mantener el sistema inmunitario fuerte mediante actividad física regular y una dieta saludable son otras formas de disminuir el riesgo de contraer una neumonía
         </p>
+        <PreventionCanva/>
       </div>
     </div>
   </>
