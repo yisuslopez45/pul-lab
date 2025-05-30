@@ -12,7 +12,10 @@ const SignIn = () => {
 
     const handleLogin = useCallback(() => {
         loginGoogleWithPopUp()
-            .then(() => navigate('/'))
+            .then(() => {
+                console.log(userLooged);
+                navigate('/perfil')
+            })
             .catch(() => navigate('/'))
 
     }, [loginGoogleWithPopUp, navigate])
