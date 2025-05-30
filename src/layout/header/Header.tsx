@@ -9,7 +9,7 @@ import SignIn from "./SignIn";
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const headerRef = useRef<HTMLDivElement>(null);  
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = (name: string) => {
     if (openDropdown === name) {
@@ -196,57 +196,39 @@ const Header = () => {
                 </div>
               )}
             </li>
-          </ul>
 
-          <div className="w-10 h-10 bg-white rounded-full cursor-pointer flex justify-center items-center">
-            <svg
-              className="w-7 h-7 text-gray-800"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m13 19 3.5-9 3.5 9m-6.125-2h5.25M3 7h7m0 0h2m-2 0c0 1.63-.793 3.926-2.239 5.655M7.5 6.818V5m.261 7.655C6.79 13.82 5.521 14.725 4 15m3.761-2.345L5 10m2.761 2.655L10.2 15"
-              />
-            </svg>
-          </div>
-
-          <div
-            onClick={() => toggleDropdown("account")}
-            className="w-10 h-10 bg-white rounded-full cursor-pointer flex justify-center items-center"
-          >
-            <div>
-              <svg
-                className=" text-gray-800"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="currentColor"
-                viewBox="0 0 24 24"
+            <li>
+              <a
+                onClick={() => toggleDropdown("account")}
+                className="bg-white p-2 rounded-3xl font-bold flex text-gray-800 cursor-pointer"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            {openDropdown === "account" && (
-              <div className="absolute  lg:max-w-2xl  top-50 left-50 right-50  rounded-3xl shadow-lg bg-white   z-10  m-max">
-                <div className="">
-                  <SignIn/>
+                <div>
+                  <svg
+                    className=" text-gray-800"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  {openDropdown === "account" && (
+                    <div className="absolute  lg:max-w-2xl  top-50 left-50 right-50  rounded-3xl shadow-lg bg-white   z-10  m-max">
+                      <div className="">
+                        <SignIn />
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-            )}
-          </div>
+              </a>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>
