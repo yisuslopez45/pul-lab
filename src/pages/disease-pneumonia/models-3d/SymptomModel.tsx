@@ -4,27 +4,37 @@ import { GLTFResult } from "../interfaces/Symptom";
 import { useFrame } from "@react-three/fiber";
 import { Group } from "three";
 import useStoreBoard from "../store/useStoreBoard";
+import useStoreRotation from "../store/useStoreRotate";
 
 export function SymptomModel(props: JSX.IntrinsicElements["group"]) {
-  const groupRef = useRef<Group>(null); 
-  const {  setStateAnimation} = useStoreBoard()
-  const { nodes, materials } = useGLTF("/models-3d/pneumonia/Symptom-transformed.glb") as unknown as GLTFResult;
+  const groupRef = useRef<Group>(null);
+  const { setStateAnimation } = useStoreBoard();
+  const { direction } = useStoreRotation();
+
+  const { nodes, materials } = useGLTF(
+    "/models-3d/pneumonia/Symptom-transformed.glb"
+  ) as unknown as GLTFResult;
 
   const [, get] = useKeyboardControls();
 
   useFrame(() => {
     const { animation } = get();
-    
-    setStateAnimation(false)
-    
+
+    setStateAnimation(false);
+
     if (animation && groupRef.current) {
-      setStateAnimation(true)
+      setStateAnimation(true);
       groupRef.current.rotation.y += 0.04;
     }
-     if (groupRef.current) {
+    if (groupRef.current) {
       groupRef.current.rotation.y += 0.003;
-    }
 
+      if (direction === "left") {
+        groupRef.current.rotation.y += 0.02;
+      } else if (direction === "right") {
+        groupRef.current.rotation.y -= 0.02;
+      }
+    }
   });
   return (
     <group ref={groupRef} {...props} dispose={null}>
