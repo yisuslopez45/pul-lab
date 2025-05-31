@@ -12,6 +12,10 @@ import { SymptomModel } from "../models-3d/SymptomModel";
 import AlertText3D from "../texts/AlertText3D";
 import useStoreBoard from "../store/useStoreBoard";
 import FloorModel from "../models-3d/FloorModel";
+import Html3D from "../components/Html3D";
+import Button from "../../../layout/components/Button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import useStoreRotation from "../store/useStoreRotate";
 
 enum Controls {
   animation = "animation",
@@ -19,6 +23,7 @@ enum Controls {
 
 const SymptomCanva = () => {
   const {  isActiveAnimation} = useStoreBoard()
+  const { setDirection } = useStoreRotation()
 
   const map = useMemo<KeyboardControlsEntry<Controls>[]>(
     () => [{ name: Controls.animation, keys: ["KeyE"] }],
@@ -48,6 +53,27 @@ const SymptomCanva = () => {
               castShadow={true}
             />
             <Environment preset="dawn" background={true} />
+
+            <Html3D position={[2.8,3,1]} >
+              <Button
+                onClick={() => setDirection("right")} 
+                label=""  
+                px={1} 
+                py={1}   
+                icon={<ChevronRight className="p-0 m-0" />}  
+              />
+            </Html3D>
+
+             <Html3D position={[-2.8,3,1]} >
+              <Button 
+                label=""  
+                px={1} 
+                py={1}   
+                icon={<ChevronLeft className="p-0 m-0" />} 
+                onClick={() => setDirection("left")} 
+              />
+            </Html3D>
+
             <SymptomModel scale={80} position={[0, -1, 0.8]} castShadow />
 
             {!isActiveAnimation && (

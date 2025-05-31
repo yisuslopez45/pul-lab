@@ -16,7 +16,7 @@ const Html3D = ({
     position
 }: Props ) => {
     return (
-        <Html transform={transform} occlude="blending" position={ position} center distanceFactor={10} >
+        <Html transform={transform}  position={ position} center distanceFactor={10} >
             <div className={className}>
                 {children}
             </div>
