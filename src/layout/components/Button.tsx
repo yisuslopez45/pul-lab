@@ -4,10 +4,13 @@ type Props = {
   label : string,
   color? : Colors,
   onClick? : (e: React.MouseEvent<HTMLButtonElement>)=>void,
-  className?: string
+  className?: string,
+  icon?: React.ReactNode,
+  py? : number, //padding y
+  px? : number  //padding x
 }
 
-const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , className }) => {
+const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , className , icon , px = 6 , py = 3 }) => {
 
   const colorVariants : Record<Colors, string> = {
     blue: "from-blue-500 to-blue-400  ",
@@ -25,7 +28,7 @@ const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , cla
       className={`
       ${className}
       relative
-      px-10 py-4
+      px-${px} py-${py}
       rounded-2xl
      transition-all duration-200 active:translate-y-1 
       bg-gradient-to-b
@@ -37,6 +40,7 @@ const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , cla
     >
         <span className="drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
          {label}
+         {icon}
         </span>
     </button>
 
