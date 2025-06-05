@@ -56,21 +56,21 @@ const SymptomCanva = () => {
             />
             <Environment preset="dawn" background={true} />
 
-            <Html3D position={[2.8,3,1]} >
+            <Html3D position={[2.8,3,1]} transform={false} >
               <Button
                 onClick={() => setDirection("left")} 
                 label=""  
-                px={1} 
-                py={1}   
+                px={3} 
+                py={2}   
                 icon={<ChevronRight className="p-0 m-0" />}  
               />
             </Html3D>
 
-             <Html3D position={[-2.8,3,1]} >
+             <Html3D position={[-2.8,3,1]} transform={false} >
               <Button 
                 label=""  
-                px={1} 
-                py={1}   
+                px={3} 
+                py={2}   
                 icon={<ChevronLeft className="p-0 m-0" />} 
                 onClick={() => setDirection("right")} 
               />
