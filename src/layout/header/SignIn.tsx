@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router'
 import { useCallback } from 'react'
 import { useAuthStore } from '../../store/authStore'
 
-const SignIn = () => {
+type SignProps = {
+  onAction?: () => void;
+};
+
+
+const SignIn = ({ onAction } : SignProps) => {
 
     const { loginGoogleWithPopUp, logout, userLooged } = useAuthStore()
     const navigate = useNavigate()
@@ -13,6 +18,7 @@ const SignIn = () => {
     const handleLogin = useCallback(() => {
         loginGoogleWithPopUp()
             .then(() => {
+                if(onAction) onAction()
                 console.log(userLooged);
                 navigate('/perfil')
             })

@@ -219,9 +219,9 @@ const Header = () => {
                     />
                   </svg>
                   {openDropdown === "account" && (
-                    <div className="absolute  lg:max-w-2xl  top-50 left-50 right-50  rounded-3xl shadow-lg bg-white   z-10  m-max">
+                    <div className="absolute  lg:max-w-2xl  top-50 left-50 right-50  rounded-3xl shadow-lg bg-white z-10  m-max">
                       <div className="">
-                        <SignIn />
+                        <SignIn onAction={()=>setOpenDropdown(null)} />
                       </div>
                     </div>
                   )}
