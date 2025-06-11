@@ -1,4 +1,4 @@
-import QuestionCanva from "./canva/QuestionCanva"
+import QuizV2 from "./canva/QuizV2"
 
 const Quiz = () => {
     return (
@@ -7,8 +7,7 @@ const Quiz = () => {
               
             </div>
             <div className="mt-6  text-center p-4 bg-indigo-950 rounded border-2 border-indigo-800">
-
-                <QuestionCanva />
+                <QuizV2/>
             </div>
         </div>
     )
