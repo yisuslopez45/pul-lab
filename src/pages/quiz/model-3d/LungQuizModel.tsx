@@ -8,46 +8,83 @@ import { JSX, useCallback, useMemo, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { Group, MeshStandardMaterial } from "three";
 import { GLTFResult } from '../../disease-pneumonia/interfaces/Lung';
+import useStoreQuiz from '../store/useStoreQuiz';
 
 export default function LungQuizModel(props: JSX.IntrinsicElements['group']) {
   const group = useRef<Group>(null)
   const { nodes, materials } = useGLTF("/models-3d/pneumonia/Lung-transformed.glb") as unknown as GLTFResult
+  const { indexQuestion, setStateResponse, questions } = useStoreQuiz()
+  const [hovered, setHovered] = useState<string | null>(null);
 
-  const [selectedPart, setSelectedPart] = useState<string | null>(null)
 
-  const highlightMaterial = useMemo(() => new MeshStandardMaterial({ color: 'orange' }), [])
+  const highlightCorrect = useMemo(() => new MeshStandardMaterial({ color: 'green' }), []);
+  const highlightIncorrect = useMemo(() => new MeshStandardMaterial({ color: 'red' }), []);
 
-    const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>, selected : string) => {
-      e.stopPropagation()
-      setSelectedPart(selected)
-     }, [setSelectedPart]);
+  const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>, selected: string) => {
+    e.stopPropagation()
+    setStateResponse(selected, indexQuestion!)
+  }, [setStateResponse, indexQuestion]);
+
+  const getMaterial = (key: string, defaultMaterial: MeshStandardMaterial) => {
+    if (indexQuestion == null) return defaultMaterial
+    const question = questions[indexQuestion!];
+
+    if (!question.selected) return defaultMaterial;
+
+    if (question.selected !== '') {
+      if (key === question.correct) return highlightCorrect;
+      if (key === question.selected && question.selected !== question.correct) return highlightIncorrect;
+    }
+
+    return defaultMaterial;
+  };
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <group
           name="Trachea"
-          onClick={(e : React.MouseEvent<HTMLButtonElement> )=>handleClick( e  , 'Trachea')}
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e, 'Trachea')}
+          onPointerOver={() =>  setHovered('Trachea')}
+          onPointerOut={() => setHovered(null)}
+          scale={hovered === 'Trachea' ? 1.05 : 1}
         >
-          <mesh  castShadow name="Trachea_1"  geometry={nodes.Trachea_1.geometry}  material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaArytenoidMaterial}  />
-          <mesh castShadow name="Trachea_2" geometry={nodes.Trachea_2.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaMaterial} />
-          <mesh castShadow name="Trachea_3" geometry={nodes.Trachea_3.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaCricoidMaterial} />
-          <mesh castShadow name="Trachea_4" geometry={nodes.Trachea_4.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaEpiglosttisMaterial} />
-          <mesh castShadow name="Trachea_5" geometry={nodes.Trachea_5.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaHyoidMaterial} />
-          <mesh castShadow name="Trachea_6" geometry={nodes.Trachea_6.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaLarynxMaterial} />
-          <mesh castShadow name="Trachea_7" geometry={nodes.Trachea_7.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaMedianMaterial} />
-          <mesh castShadow name="Trachea_8" geometry={nodes.Trachea_8.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaThyrocricoidMaterial} />
-          <mesh castShadow name="Trachea_9" geometry={nodes.Trachea_9.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaThyrohyoidMaterial} />
-          <mesh castShadow name="Trachea_10" geometry={nodes.Trachea_10.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaThyroidMaterial} />
-          <mesh castShadow name="Trachea_11" geometry={nodes.Trachea_11.geometry} material={selectedPart == "Trachea" ? highlightMaterial : materials.TracheaVocalMaterial} />
+          <mesh castShadow name="Trachea_1" geometry={nodes.Trachea_1.geometry} material={getMaterial('Trachea', materials.TracheaArytenoidMaterial)} />
+          <mesh castShadow name="Trachea_2" geometry={nodes.Trachea_2.geometry} material={getMaterial('Trachea', materials.TracheaMaterial)} />
+          <mesh castShadow name="Trachea_3" geometry={nodes.Trachea_3.geometry} material={getMaterial('Trachea', materials.TracheaCricoidMaterial)} />
+          <mesh castShadow name="Trachea_4" geometry={nodes.Trachea_4.geometry} material={getMaterial('Trachea', materials.TracheaEpiglosttisMaterial)} />
+          <mesh castShadow name="Trachea_5" geometry={nodes.Trachea_5.geometry} material={getMaterial('Trachea', materials.TracheaHyoidMaterial)} />
+          <mesh castShadow name="Trachea_6" geometry={nodes.Trachea_6.geometry} material={getMaterial('Trachea', materials.TracheaLarynxMaterial)} />
+          <mesh castShadow name="Trachea_7" geometry={nodes.Trachea_7.geometry} material={getMaterial('Trachea', materials.TracheaMedianMaterial)} />
+          <mesh castShadow name="Trachea_8" geometry={nodes.Trachea_8.geometry} material={getMaterial('Trachea', materials.TracheaThyrocricoidMaterial)} />
+          <mesh castShadow name="Trachea_9" geometry={nodes.Trachea_9.geometry} material={getMaterial('Trachea', materials.TracheaThyrohyoidMaterial)} />
+          <mesh castShadow name="Trachea_10" geometry={nodes.Trachea_10.geometry} material={getMaterial('Trachea', materials.TracheaThyroidMaterial)} />
+          <mesh castShadow name="Trachea_11" geometry={nodes.Trachea_11.geometry} material={getMaterial('Trachea', materials.TracheaVocalMaterial)} />
         </group>
-        <group name="Lung"   onClick={(e : React.MouseEvent<HTMLButtonElement> )=>handleClick( e  , 'Lung')} >
-          <mesh castShadow name="Lung_1" geometry={nodes.Lung_1.geometry} material={ selectedPart == "Lung" ? highlightMaterial : materials.LungRightMaterial} morphTargetDictionary={nodes.Lung_1.morphTargetDictionary} morphTargetInfluences={nodes.Lung_1.morphTargetInfluences} />
-          <mesh castShadow name="Lung_2" geometry={nodes.Lung_2.geometry} material={ selectedPart == "Lung" ? highlightMaterial : materials.LungPulmonaryVeinsMaterial} morphTargetDictionary={nodes.Lung_2.morphTargetDictionary} morphTargetInfluences={nodes.Lung_2.morphTargetInfluences} />
-          <mesh castShadow name="Lung_3" geometry={nodes.Lung_3.geometry} material={ selectedPart == "Lung" ? highlightMaterial : materials.LungPulmonaryArteriesMaterial} morphTargetDictionary={nodes.Lung_3.morphTargetDictionary} morphTargetInfluences={nodes.Lung_3.morphTargetInfluences} />
-          <mesh castShadow name="Lung_4" geometry={nodes.Lung_4.geometry} material={ selectedPart == "Lung" ? highlightMaterial : materials.LungLeftMaterial} morphTargetDictionary={nodes.Lung_4.morphTargetDictionary} morphTargetInfluences={nodes.Lung_4.morphTargetInfluences} />
+        <group
+          name="Lung"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e, 'Lung')}
+          onPointerOver={() => setHovered('Lung')}
+          onPointerOut={() => setHovered(null)}
+          scale={hovered === 'Lung' ? 1.05 : 1}
+        >
+          <mesh castShadow name="Lung_1" geometry={nodes.Lung_1.geometry} material={getMaterial('Lung', materials.LungRightMaterial)} morphTargetDictionary={nodes.Lung_1.morphTargetDictionary} morphTargetInfluences={nodes.Lung_1.morphTargetInfluences} />
+          <mesh castShadow name="Lung_2" geometry={nodes.Lung_2.geometry} material={getMaterial('Lung', materials.LungPulmonaryVeinsMaterial)} morphTargetDictionary={nodes.Lung_2.morphTargetDictionary} morphTargetInfluences={nodes.Lung_2.morphTargetInfluences} />
+          <mesh castShadow name="Lung_3" geometry={nodes.Lung_3.geometry} material={getMaterial('Lung', materials.LungPulmonaryArteriesMaterial)} morphTargetDictionary={nodes.Lung_3.morphTargetDictionary} morphTargetInfluences={nodes.Lung_3.morphTargetInfluences} />
+          <mesh castShadow name="Lung_4" geometry={nodes.Lung_4.geometry} material={getMaterial('Lung', materials.LungLeftMaterial)} morphTargetDictionary={nodes.Lung_4.morphTargetDictionary} morphTargetInfluences={nodes.Lung_4.morphTargetInfluences} />
         </group>
-        <mesh  onClick={(e : React.MouseEvent<HTMLButtonElement> )=>handleClick( e  , 'Diaphragm')} castShadow name="Diaphragm" geometry={nodes.Diaphragm.geometry} material={ selectedPart == "Diaphragm" ? highlightMaterial : materials.DiaphragmMaterial} morphTargetDictionary={nodes.Diaphragm.morphTargetDictionary} morphTargetInfluences={nodes.Diaphragm.morphTargetInfluences} />
+        <mesh
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e, 'Diaphragm')}
+          onPointerOver={() => setHovered('Diaphragm')}
+          onPointerOut={() => setHovered(null)}
+          scale={hovered === 'Diaphragm' ? 1.05 : 1}
+          castShadow
+          name="Diaphragm"
+          geometry={nodes.Diaphragm.geometry}
+          material={getMaterial('Diaphragm', materials.DiaphragmMaterial)}
+          morphTargetDictionary={nodes.Diaphragm.morphTargetDictionary}
+          morphTargetInfluences={nodes.Diaphragm.morphTargetInfluences}
+        />
       </group>
     </group>
   )
