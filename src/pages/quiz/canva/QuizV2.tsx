@@ -1,5 +1,5 @@
-import { Suspense } from "react";
-import { OrbitControls, Environment, Text,  } from "@react-three/drei";
+import  { Suspense, useState } from "react";
+import { OrbitControls, Environment, Text, } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 import Spinner from "../../../layout/components/Spinner";
@@ -10,10 +10,39 @@ import Button from "../../../layout/components/Button";
 import { ChevronLeft, ChevronRight, Save } from "lucide-react";
 import useStoreQuiz from "../store/useStoreQuiz";
 import AlertText3D from "../../disease-pneumonia/texts/AlertText3D";
+import { saveQuiz } from "../services/service_db";
+import { useAuthStore } from "../../../store/authStore";
+
 
 const QuizV2 = () => {
-    //   const [question, setQuestion] = useState<number | null>(null);
-    const { questions, setIndexQuestion, indexQuestion , getQuestion } = useStoreQuiz()
+    
+    const { userLooged } = useAuthStore()
+    const [isLoading, setIsLoading] = useState(false);
+    const { questions, setIndexQuestion, indexQuestion, getQuestion , resetStore } = useStoreQuiz()
+
+    const handleClick = async() => {
+        setIsLoading(true);
+        const answers = Object.fromEntries(
+            questions.map((item, index) => [
+                `respuesta_${index + 1}`,
+                item.correct === item.selected
+            ])
+        );
+
+        let qualification = Object.values(answers).filter(val => val).length 
+        
+        const success = await saveQuiz({
+            user: userLooged!,
+            qualification: qualification,
+            answers: answers
+        })
+
+        setIsLoading(false);
+
+        if(success){
+            resetStore()
+        }
+    }
 
     return (
         <>
@@ -110,22 +139,23 @@ const QuizV2 = () => {
                                     <Button
                                         label=""
                                         color="green"
+                                        isLoading={isLoading}
                                         px={3}
                                         py={1}
-                                        onClick={() => setIndexQuestion(0)}
+                                        onClick={handleClick}
                                         icon={<Save className="p-0 m-0" />}
                                     />
                                 )}
                             </Html3D>
-                            
+
                             {getQuestion(indexQuestion).selected !== '' && (
                                 <AlertText3D
-                                    text={ getQuestion(indexQuestion).correct == getQuestion(indexQuestion).selected ? `Correcto` : 'Incorrecto'}
+                                    text={getQuestion(indexQuestion).correct == getQuestion(indexQuestion).selected ? `Correcto` : 'Incorrecto'}
                                     height={0.1}
                                     size={0.8}
                                     position={[0, -2.7, 2.5]}
                                     color={getQuestion(indexQuestion).correct == getQuestion(indexQuestion).selected ? `green` : 'red'}
-                                   
+
                                 />
                             )}
                         </>

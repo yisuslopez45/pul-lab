@@ -9,6 +9,7 @@ import { useGLTF } from '@react-three/drei'
 import { Group, MeshStandardMaterial } from "three";
 import { GLTFResult } from '../../disease-pneumonia/interfaces/Lung';
 import useStoreQuiz from '../store/useStoreQuiz';
+import { ThreeEvent } from '@react-three/fiber';
 
 export default function LungQuizModel(props: JSX.IntrinsicElements['group']) {
   const group = useRef<Group>(null)
@@ -20,7 +21,8 @@ export default function LungQuizModel(props: JSX.IntrinsicElements['group']) {
   const highlightCorrect = useMemo(() => new MeshStandardMaterial({ color: 'green' }), []);
   const highlightIncorrect = useMemo(() => new MeshStandardMaterial({ color: 'red' }), []);
 
-  const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>, selected: string) => {
+  const handleClick = useCallback((e: ThreeEvent<MouseEvent>, selected: string) => {
+    console.log("RECARAFR");
     e.stopPropagation()
     setStateResponse(selected, indexQuestion!)
   }, [setStateResponse, indexQuestion]);
@@ -44,8 +46,8 @@ export default function LungQuizModel(props: JSX.IntrinsicElements['group']) {
       <group name="Scene">
         <group
           name="Trachea"
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e, 'Trachea')}
-          onPointerOver={() =>  setHovered('Trachea')}
+          onClick={(e) => handleClick(e, 'Trachea')}
+          onPointerOver={() => setHovered('Trachea')}
           onPointerOut={() => setHovered(null)}
           scale={hovered === 'Trachea' ? 1.05 : 1}
         >
@@ -63,7 +65,7 @@ export default function LungQuizModel(props: JSX.IntrinsicElements['group']) {
         </group>
         <group
           name="Lung"
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e, 'Lung')}
+          onClick={(e) => handleClick(e, 'Lung')}
           onPointerOver={() => setHovered('Lung')}
           onPointerOut={() => setHovered(null)}
           scale={hovered === 'Lung' ? 1.05 : 1}
@@ -74,7 +76,7 @@ export default function LungQuizModel(props: JSX.IntrinsicElements['group']) {
           <mesh castShadow name="Lung_4" geometry={nodes.Lung_4.geometry} material={getMaterial('Lung', materials.LungLeftMaterial)} morphTargetDictionary={nodes.Lung_4.morphTargetDictionary} morphTargetInfluences={nodes.Lung_4.morphTargetInfluences} />
         </group>
         <mesh
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e, 'Diaphragm')}
+          onClick={(e) => handleClick(e, 'Diaphragm')}
           onPointerOver={() => setHovered('Diaphragm')}
           onPointerOut={() => setHovered(null)}
           scale={hovered === 'Diaphragm' ? 1.05 : 1}
