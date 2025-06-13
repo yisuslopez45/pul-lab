@@ -27,7 +27,7 @@ const initialQuestions = [
     selected: "",
   },
   {
-    question: "Seleccione el diaframa",
+    question: "Seleccione el diafragma",
     correct: "Diaphragm",
     selected: "",
   },

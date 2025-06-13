@@ -39,7 +39,7 @@ export type Quiz = {
   photo_user?: string;
 };
 
-type UserAttempt = {
+export type UserAttempt = {
   userId: string;
   attempts: {
     id: string;
