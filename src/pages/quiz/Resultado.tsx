@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useAttemptsAll } from "./hooks/fetchApi";
 import { CircleUserRound } from "lucide-react";
 import Spinner from "../../layout/components/Spinner";
