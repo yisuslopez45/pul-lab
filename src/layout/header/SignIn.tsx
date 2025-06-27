@@ -1,16 +1,16 @@
 import CardIU from '../components/CardIU'
 import Button from '../components/Button'
 // import useAuthStore from '../../store/authStore'
-import { useNavigate } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
 import { useCallback } from 'react'
 import { useAuthStore } from '../../store/authStore'
 
 type SignProps = {
-  onAction?: () => void;
+    onAction?: () => void;
 };
 
 
-const SignIn = ({ onAction } : SignProps) => {
+const SignIn = ({ onAction }: SignProps) => {
 
     const { loginGoogleWithPopUp, logout, userLooged } = useAuthStore()
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ const SignIn = ({ onAction } : SignProps) => {
     const handleLogin = useCallback(() => {
         loginGoogleWithPopUp()
             .then(() => {
-                if(onAction) onAction()
+                if (onAction) onAction()
                 console.log(userLooged);
                 navigate('/perfil')
             })
@@ -42,7 +42,11 @@ const SignIn = ({ onAction } : SignProps) => {
                         <Button onClick={handleLogin} label="Iniciar con Goolge" color="amber" />
                     )
                     : (
-                        <Button onClick={handleLogout} label="Cerrar Sesion" color="red" />
+                        <div className='flex gap-4' >
+                            <Button onClick={handleLogout} label="Cerrar Sesion" color="red" />
+                            <Button  label="Ir Perfil" onClick={() => navigate('/perfil')}  color="green" />
+                           
+                        </div>
                     )
                 }
             </div>
