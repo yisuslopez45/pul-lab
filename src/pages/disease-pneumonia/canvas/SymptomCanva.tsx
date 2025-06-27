@@ -17,6 +17,7 @@ import Button from "../../../layout/components/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useStoreRotation from "../store/useStoreRotate";
 
+
 enum Controls {
   animation = "animation",
 }
@@ -46,31 +47,32 @@ const SymptomCanva = () => {
               maxPolarAngle={Math.PI / 2}
             />
             <ambientLight intensity={1.5} />
-            <directionalLight
-              color="white"
-              position={[2, 20, 5]}
+      
+            <pointLight
+              color={'cyan'}
+              position={[2, 5, 5]}
               intensity={20}
               castShadow={true}
             />
             <Environment preset="dawn" background={true} />
 
-            <Html3D position={[2.8,3,1]} >
+            <Html3D position={[2.8,3,1]} transform={false} >
               <Button
-                onClick={() => setDirection("right")} 
+                onClick={() => setDirection("left")} 
                 label=""  
-                px={1} 
-                py={1}   
+                px={3} 
+                py={2}   
                 icon={<ChevronRight className="p-0 m-0" />}  
               />
             </Html3D>
 
-             <Html3D position={[-2.8,3,1]} >
+             <Html3D position={[-2.8,3,1]} transform={false} >
               <Button 
                 label=""  
-                px={1} 
-                py={1}   
+                px={3} 
+                py={2}   
                 icon={<ChevronLeft className="p-0 m-0" />} 
-                onClick={() => setDirection("left")} 
+                onClick={() => setDirection("right")} 
               />
             </Html3D>
 

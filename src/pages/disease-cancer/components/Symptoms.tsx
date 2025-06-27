@@ -1,7 +1,10 @@
+import SymptomsCanvas from "../canvas/SymptomsCanvas";
+
 const Symptoms = () => {
   return (
     <>
       <div className="mt-12 w-full p-6 bg-indigo-900/80 rounded-lg border-4 border-indigo-700">
+      
         <div className="text-center">
           <h2 className="text-2xl font-bold text-yellow-400 mb-4 font-['Press_Start_2P',_monospace]">
             Síntomas del Cáncer de Pulmón
@@ -30,6 +33,7 @@ const Symptoms = () => {
               Consulta a un médico para un diagnóstico preciso.
             </p>
           </div>
+            <SymptomsCanvas />
         </div>
       </div>
     </>

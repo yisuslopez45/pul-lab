@@ -7,10 +7,11 @@ type Props = {
   className?: string,
   icon?: React.ReactNode,
   py? : number, //padding y
-  px? : number  //padding x
+  px? : number,  //padding x
+  isLoading? : boolean
 }
 
-const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , className , icon , px = 6 , py = 3 }) => {
+const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , className , icon , px = 6 , py = 3 , isLoading = false }) => {
 
   const colorVariants : Record<Colors, string> = {
     blue: "from-blue-500 to-blue-400  ",
@@ -24,6 +25,7 @@ const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , cla
   };
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`
       ${className}
@@ -38,10 +40,21 @@ const Button : React.FC<Props> = ({ label = '' , color = 'blue' , onClick  , cla
       transform transition-transform duration-100
    `}
     >
+         {isLoading ? (
+        <svg className="w-6 h-6 animate-spin mx-auto text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v8z"
+          ></path>
+        </svg>
+      ) : (
         <span className="drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
-         {label}
-         {icon}
+          {label}
+          {icon}
         </span>
+      )}
     </button>
 
   );
