@@ -11,14 +11,13 @@ const WhatIs = () => {
         </div>
         <div className="mt-6 grid gap-4 p-4 bg-indigo-950 rounded border-2 border-indigo-800">
           <p className="text-indigo-200">
-            El asma es una enfermedad crónica inflamatoria que afecta las vías respiratorias de los pulmones. 
-            Estas vías se inflaman y se estrechan de forma temporal, lo que dificulta el paso del aire y 
-            genera síntomas como dificultad para respirar, tos y silbidos en el pecho. Aunque no tiene cura, 
-            con el tratamiento adecuado puede controlarse eficazmente.
+          La tuberculosis pulmonar es una enfermedad infecciosa causada por la bacteria Mycobacterium tuberculosis, 
+          que se transmite principalmente por el aire cuando una persona enferma tose, estornuda o habla. 
+          Se estima que alrededor de una cuarta parte de la población mundial se ha infectado con el bacilo de la tuberculosis.
+          Las personas que están infectadas pero que aún no han enfermado no pueden transmitir la enfermedad. 
           </p>
           <p className="text-indigo-200">
-            El asma puede ser desencadenada por factores genéticos y ambientales. Los episodios de asma 
-            z(crisis asmáticas) pueden variar en intensidad y duración, y pueden ser peligrosos si no se tratan a tiempo.
+          La tuberculosis suele tratarse con antibióticos y puede ser mortal si no se trata.
         </p>
         <TuberculosisCanva />
       </div>

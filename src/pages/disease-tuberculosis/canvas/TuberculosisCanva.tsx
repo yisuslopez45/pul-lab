@@ -3,9 +3,8 @@ import { OrbitControls, Environment, Html } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 //import Button from "../../../layout/components/Button";
 import { Vector3 } from 'three';
-import { LungTuberculosisModel } from "../models-3d/LungTuberculosisModel";
 import FloorModel from "../models-3d/FloorModel";
-
+import { LungTuberculosisModel } from "../models-3d/LungTuberculosisModel";
 
 
 const TuberculosisCanva = () => {
@@ -34,13 +33,20 @@ const TuberculosisCanva = () => {
                      intensity={8}
                      castShadow={true}
                 />
+                <directionalLight
+                     color="white"
+                     position={[1, 5, 5]} 
+                     intensity={4}
+                     castShadow={true}
+                />
                 <Environment preset="city" background={false} />
-                <LungTuberculosisModel  scale={10} position={[0,0,0.8]} castShadow  />
+                <LungTuberculosisModel  scale={100} position={[0,0,0.8]} castShadow  />
                 <Html center>
                     {/* <Button onClick={handleClick} label="Pulmón" color="violet" /> */}
                 </Html>
                 <FloorModel color="#3F72AF" position={position} metalnesVal={1} roughness={0.7}  />
             </Canvas>
+
 
         </Suspense>
         </>

@@ -9,20 +9,14 @@ const Symptoms = () => {
         </div>
         <div className="mt-6  gap-4 p-4 bg-indigo-950 rounded border-2 border-indigo-800 ">
           <p className="text-indigo-200 ">
-            La neumonía es una infección que inflama los sacos aéreos de uno o
-            ambos pulmones. Estos sacos (llamados alvéolos) pueden llenarse de
-            líquido o pus, lo que causa síntomas como:
+            La tuberculosis pulmonar es una enfermedad infecciosa causada por una bacteria que se transmite por el aire cuando una persona enferma tose o estornuda. Al ingresar al cuerpo, la bacteria llega a los pulmones y puede quedar inactiva por años o activarse y comenzar a dañar el tejido pulmonar. Esto produce síntomas como:
           </p>
-
           <ul className="text-indigo-200 space-y-2 ms-5 mt-4">
             <li className="list-disc">
-              Tos, a veces con flema o mucosidad
+              tos persistente
             </li>
-            <li className="list-disc">Fiebre o escalofríos</li>
-            <li className="list-disc">Dificultad para respirar</li>
-            <li className="list-disc">
-              Dolor en el pecho al respirar o toser
-            </li>
+            <li className="list-disc">Fiebre y perdidad de peso</li>
+            <li className="list-disc">sudoracion nocturna</li>
           </ul>
         </div>
       </div>
