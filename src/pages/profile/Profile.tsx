@@ -3,9 +3,7 @@ import {
   Heart,
   Mail,
   Shield,
-  Star,
   Sword,
-  Zap,
 } from "lucide-react";
 import StatBar from "./components/StatBar";
 import { useAuthStore } from "../../store/authStore";

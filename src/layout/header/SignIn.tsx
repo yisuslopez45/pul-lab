@@ -1,7 +1,7 @@
 import CardIU from '../components/CardIU'
 import Button from '../components/Button'
 // import useAuthStore from '../../store/authStore'
-import { NavLink, useNavigate } from 'react-router'
+import {  useNavigate } from 'react-router'
 import { useCallback } from 'react'
 import { useAuthStore } from '../../store/authStore'
 
