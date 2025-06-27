@@ -123,14 +123,20 @@ const Header = () => {
               </a>
               {openDropdown === "quiz" && (
                 <div className="absolute sm:max-w-full md:max-w-full lg:max-w-7xl top-16 left-2 right-2  mt-2 rounded-3xl shadow-lg bg-white  ring-opacity-5 z-10">
-                  <div className="flex gap-4  justify-between py-12 sm:px-10 md:px-15 lg-px-40 xl:px-40 ">
+                  <div className="flex gap-4  justify-center py-12 sm:px-10 md:px-15 lg-px-40 xl:px-40 ">
                     {ListNavigationTest.map((item) => (
-                      <Card
-                        className="hover:-translate-y-1 transition-transform duration-200"
-                        key={item.id}
-                        title={item.title}
-                        imageUrl={item.imageUrl}
-                      />
+                      <NavLink
+                        to={item.to}
+                        end
+                        onClick={() => setOpenDropdown(null)}
+                      >
+                        <Card
+                          className="hover:-translate-y-1 transition-transform duration-200"
+                          key={item.id}
+                          title={item.title}
+                          imageUrl={item.imageUrl}
+                        />
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -219,9 +225,9 @@ const Header = () => {
                     />
                   </svg>
                   {openDropdown === "account" && (
-                    <div className="absolute  lg:max-w-2xl  top-50 left-50 right-50  rounded-3xl shadow-lg bg-white   z-10  m-max">
+                    <div className="absolute  lg:max-w-2xl  top-50 left-50 right-50  rounded-3xl shadow-lg bg-white z-10  m-max">
                       <div className="">
-                        <SignIn />
+                        <SignIn onAction={()=>setOpenDropdown(null)} />
                       </div>
                     </div>
                   )}
