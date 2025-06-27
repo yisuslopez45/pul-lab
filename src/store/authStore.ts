@@ -1,39 +1,58 @@
 import { create } from "zustand";
-import { auth } from "../../firebase.config"
-import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup , signOut  } from "firebase/auth";
+import { persist } from "zustand/middleware";
+import { auth } from "../../firebase.config";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+  User,
+} from "firebase/auth";
 
+const provider = new GoogleAuthProvider();
 
-const provider = new GoogleAuthProvider()
+type AuthStore = {
+  userLooged: User | null;
+  loading: boolean;
+  loginGoogleWithPopUp: () => Promise<void>;
+  logout: () => Promise<void>;
+  initAuth: () => void;
+};
 
-export const useAuthStore = create<any>((set) => {
+export const useAuthStore = create<AuthStore>()(
+  persist(
+    (set) => ({
+      userLooged: null,
+      loading: true,
 
-    const obserAuthState = () => {
-        onAuthStateChanged(auth, (user) => {
-            user ? set({ userLooged : user }) : set({ userLooged : null })
-        })
-    }
-
-    obserAuthState()
-
-    return {
-        userLooged: null,
-
-        loginGoogleWithPopUp : async () => {
-            try {
-                return await signInWithPopup(auth, provider )
-            } catch (error) {
-                console.error("Error logging in :" , error)
-                
-            }
-        },
-
-        logout : async () => {
-            return await signOut(auth)
-                .then(()=> set({userLooged : null}) )
-                .catch((err)=> console.error("Error loggint out", err))
+      loginGoogleWithPopUp: async () => {
+        try {
+          const result = await signInWithPopup(auth, provider);
+          set({ userLooged: result.user });
+        } catch (error) {
+          console.error("Error logging in:", error);
         }
+      },
 
+      logout: async () => {
+        try {
+          await signOut(auth);
+          set({ userLooged: null });
+        } catch (error) {
+          console.error("Error logging out:", error);
+        }
+      },
+
+      initAuth: () => {
+        set({ loading: true });
+        onAuthStateChanged(auth, (user) => {
+          set({ userLooged: user, loading: false });
+        });
+      },
+    }),
+    {
+      name: "auth-store", // clave de almacenamiento en localStorage
+      partialize: (state) => ({ userLooged: state.userLooged }), // qué guardar
     }
-})
-
-
+  )
+);

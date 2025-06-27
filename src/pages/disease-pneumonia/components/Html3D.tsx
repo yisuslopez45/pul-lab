@@ -6,6 +6,7 @@ interface Props {
     transform?: boolean;
     occlude?: boolean;
     position?: [number, number, number];
+    distanceFactor? : number;
     className?: string;
 }
 
@@ -13,10 +14,11 @@ const Html3D = ({
     children,
     transform = true,
     className = "annotation",
+    distanceFactor = 10,
     position
 }: Props ) => {
     return (
-        <Html transform={transform}  position={ position} center distanceFactor={10} >
+        <Html transform={transform}  position={ position} center distanceFactor={distanceFactor}  >
             <div className={className}>
                 {children}
             </div>

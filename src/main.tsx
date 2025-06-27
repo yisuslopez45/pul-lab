@@ -37,6 +37,8 @@ import SymptomsTuberculosis from './pages/disease-tuberculosis/components/Sympto
 import TreatmentTuberculosis from './pages/disease-tuberculosis/components/Treatment'
 import Tuberculosis from './pages/disease-tuberculosis/Tuberculosis'
 import Profile from './pages/profile/Profile'
+import Quiz from './pages/quiz/Quiz'
+import Resultado from './pages/quiz/Resultado'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -44,8 +46,10 @@ createRoot(document.getElementById('root')!).render(
   <Layout>
     <Routes>
       <Route path="/" element={<App />} />
-       <Route path="/perfil" element={<Profile />} />
-      
+      <Route path="/perfil" element={<Profile />} />
+      <Route path="/quiz" element={<Quiz />} />
+      <Route path="/resultados" element={<Resultado />} />
+
        {/* Rutas para Cáncer de Pulmón */}
       <Route path="/enfermedad-cancer" element={<LungCancer />}>
         <Route path="que-es" element={<WhatIsLungCancer />} />

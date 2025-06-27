@@ -4,6 +4,7 @@ import {
   Environment,
   KeyboardControlsEntry,
   KeyboardControls,
+  Sky,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
@@ -12,18 +13,25 @@ import AlertText3D from "../texts/AlertText3D";
 // import useStoreBoard from "../store/useStoreBoard";
 import FloorModel from "../models-3d/FloorModel";
 import { VirusModel } from "../models-3d/VirusModel";
+import Html3D from "../components/Html3D";
+import Button from "../../../layout/components/Button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import useStoreRotation from "../store/useStoreRotate";
+import useStoreBoard from "../store/useStoreBoard";
 
 enum Controls {
   animation = "animation",
 }
 
 const PreventionCanva = () => {
-//   const {  isActiveAnimation} = useStoreBoard()
+  const {  isActiveAnimation} = useStoreBoard()
+  const { setDirection } = useStoreRotation()
 
   const map = useMemo<KeyboardControlsEntry<Controls>[]>(
-    () => [{ name: Controls.animation, keys: ["KeyE"] }],
+    () => [{ name: Controls.animation, keys: ["Space"] }],
     []
   );
+
 
   return (
     <>
@@ -47,17 +55,38 @@ const PreventionCanva = () => {
               intensity={20}
               castShadow={true}
             />
+            <Sky distance={100} inclination={4}  rayleigh={1} turbidity={100} />
             <Environment preset="dawn" background={false} />
-            <VirusModel scale={1200} position={[0, -1, 0.8]} castShadow />
+            <VirusModel scale={ !isActiveAnimation ? 1100 : 1400} position={[0, 0, 0.8]} castShadow />
 
-            <AlertText3D 
-              text={`Virus`} 
-              height={0.1} 
-              size={0.8} 
-              position={ [0, -1.9 , 2.2]} 
-          />
-    
-             <FloorModel />
+            <Html3D position={[3, 0, 2.2]} transform={false}  >
+              <Button
+                onClick={() => setDirection("left")}
+                label=""
+                px={2}
+                py={2}
+                icon={<ChevronRight className="p-0 m-0" />}
+              />
+            </Html3D>
+
+            <Html3D position={[-3, 0, 2.2]} transform={false} >
+              <Button
+                label=""
+                px={2}
+                py={2}
+                icon={<ChevronLeft className="p-0 m-0" />}
+                onClick={() => setDirection("right")}
+              />
+            </Html3D>
+
+            <AlertText3D
+              text={`Presione "Espacio" `}
+              height={0.1}
+              size={0.6}
+              position={[0 , -2.5, 2.2]}
+            />
+
+            <FloorModel />
           </Canvas>
         </KeyboardControls>
       </Suspense>

@@ -33,26 +33,16 @@ export const ListNavigationDisease = [
 export const ListNavigationTest = [
     {
       id: 1,
-      title: "QUIZ NEUMONIA",
+      title: "QUIZ",
       description: "Descripción de la primera tarjeta",
-      imageUrl: "/images/Quiz.png"
+      imageUrl: "/images/Quiz.png",
+      to: "/quiz",
     },
     {
       id: 2,
-      title: "QUIZ TUBERCULOSIS",
+      title: "Resultados",
       description: "Descripción de la segunda tarjeta",
-      imageUrl: "/images/Quiz.png"
+      imageUrl: "/images/Quiz.png",
+      to: "/resultados",
     },
-    {
-      id: 3,
-      title: "QUIZ ASMA",
-      description: "Descripción de la segunda tarjeta",
-      imageUrl: "/images/Quiz.png"
-    },
-    {
-      id: 4,
-      title: "QUIZ CANCER",
-      description: "Descripción de la segunda tarjeta",
-      imageUrl: "/images/Quiz.png"
-    }
   ];

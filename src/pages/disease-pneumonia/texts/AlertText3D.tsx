@@ -1,13 +1,14 @@
 import { Center, Text3D } from "@react-three/drei";
 
 interface Props {
+  color? : string;
   text: string;
   size: number;
   height: number;
   position?: [number, number, number];
 }
 
-const AlertText3D =  ({ text, size , height , position = [0, 0, 2]  }: Props) => {
+const AlertText3D =  ({ text, size , height , position = [0, 0, 2]  , color = "#2A3895" }: Props) => {
   return (
     <>
       <Center position={position}>
@@ -23,7 +24,7 @@ const AlertText3D =  ({ text, size , height , position = [0, 0, 2]  }: Props) =>
           font="/fonts/retro.json"
         >
           {text}
-          <meshNormalMaterial  />
+          <meshStandardMaterial color={color} />
         </Text3D>
       </Center>
     </>
