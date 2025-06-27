@@ -1,3 +1,4 @@
+import SymptomsCanva from "../canvas/SymptomsCanva";
 const Symptoms = () => {
   return (
     <>
@@ -18,6 +19,7 @@ const Symptoms = () => {
             <li className="list-disc">Fiebre y perdidad de peso</li>
             <li className="list-disc">sudoracion nocturna</li>
           </ul>
+          <SymptomsCanva />
         </div>
       </div>
     </>

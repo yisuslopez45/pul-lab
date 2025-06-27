@@ -20,7 +20,7 @@ import useStoreRotation from "../store/useStoreRotate";
 enum Controls {
   animation = "animation",
 }
-
+ 
 const SymptomCanva = () => {
   const {  isActiveAnimation} = useStoreBoard()
   const { setDirection } = useStoreRotation()

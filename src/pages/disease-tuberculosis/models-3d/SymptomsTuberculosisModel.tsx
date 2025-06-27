@@ -11,31 +11,31 @@ import { useFrame } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Lung: THREE.Mesh
+    Symptom: THREE.Mesh
   }
   materials: {
-    LungMaterial: THREE.MeshStandardMaterial
+    Material_0: THREE.MeshStandardMaterial
   }
 }
 
-export function LungTuberculosisModel(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/models-3d/tuberculosis/Lung-tuberculosis.glb') as unknown as GLTFResult
+export function SymptomsTuberculosisModel(props: JSX.IntrinsicElements['group']) {
+  const { nodes, materials } = useGLTF('/models-3d/tuberculosis/sintomas.glb') as unknown as GLTFResult 
   const groupRef = useRef<THREE.Group>(null);
   useFrame(() => {
-      if (groupRef.current) {
-        groupRef.current.rotation.y += 0.003;
-      }
-    });
+        if (groupRef.current) {
+          groupRef.current.rotation.y += 0.003;
+        }
+      });
   return (
     <group ref={groupRef} {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Lung.geometry}
-        material={materials.LungMaterial}
+        geometry={nodes.Symptom.geometry}
+        material={materials.Material_0}
       />
     </group>
   )
 }
 
-useGLTF.preload('/models-3d/tuberculosis/Lung-tuberculosis.glb')
+useGLTF.preload('/models-3d/tuberculosis/sintomas.glb')
