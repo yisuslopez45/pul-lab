@@ -1,22 +1,12 @@
-import { Vector3 } from "three";
 
-interface Props {
-  color: string;
-  position: Vector3;
-  metalnesVal: number;
-  roughness: number;
-}
 
-const FloorModel = (props: Props) => {
+const FloorModel = ( ) => {
   return (
-    <mesh rotation-x={-Math.PI / 2} receiveShadow={true} position={props.position}>
-    <planeGeometry args={[5, 5]} />
-    <meshStandardMaterial
-      roughness={props.roughness}
-      metalness={props.metalnesVal}
-      color={props.color}
-    />
-  </mesh>
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} receiveShadow>
+      <planeGeometry args={[20, 20]} />
+      <shadowMaterial opacity={0.3} />
+    </mesh>
+
   );
 };
 

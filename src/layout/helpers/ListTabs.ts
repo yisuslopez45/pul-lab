@@ -24,8 +24,8 @@ export const ListNavigationDisease = [
     id: 4,
     title: "CANCER",
     description: "Descripción de la segunda tarjeta",
-    imageUrl: "/images/Lung.png",
-    to: "/page-4",
+    imageUrl: "/images/Lung.png",  
+    to: "/enfermedad-cancer",
   },
 ];
 

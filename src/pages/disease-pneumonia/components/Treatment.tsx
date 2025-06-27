@@ -1,3 +1,4 @@
+import TreatmentCanva from "../canvas/TreatmentCanva";
 
 const Treatment = () => {
   return (
@@ -12,10 +13,13 @@ const Treatment = () => {
         <p className="text-indigo-200  text-center">
         El tratamiento de la neumonía depende del tipo y la gravedad, pero generalmente involucra antibióticos para neumonías bacterianas y antivirales para neumonías virales. El reposo, líquidos y medicamentos para aliviar la fiebre y la tos pueden ser útiles independientemente del tipo de neumonía. En casos graves, puede ser necesario hospitalización, terapia respiratoria y otros procedimientos. 
         </p>
+
+        <TreatmentCanva/>
+
       </div>
     </div>
   </>
   )
 }
 
-export default Treatment
+export default Treatment;

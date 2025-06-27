@@ -1,11 +1,12 @@
 interface Props {
   title: string;
   imageUrl: string;
+  className? : string
 }
 
-const Card = ({ title, imageUrl }: Props) => {
+const Card = ({ title, imageUrl , className }: Props) => {
   return (
-    <div className="max-w-lg  rounded  cursor-pointer shadow-2xl ">
+    <div className={`max-w-lg  rounded  cursor-pointer shadow-2xl ${className} `}>
       <div className="bg-lila-600 rounded-t-2xl" >
         {imageUrl && (
           <img
