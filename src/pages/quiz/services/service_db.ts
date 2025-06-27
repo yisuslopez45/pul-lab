@@ -25,7 +25,6 @@ export const saveQuiz = async (params: Params): Promise<boolean> => {
         });
         return true;
     } catch (error) {
-        console.log(error);
         return false;
     }    
 }
@@ -70,4 +69,20 @@ export const getAllUsersWithAttempts = async (): Promise<UserAttempt[]> => {
       attempts,
     };
   });
+};
+
+
+// obtengo la informacion por usuario en sesion
+
+
+
+export const getAttemptsByCurrentUser = async (user: User): Promise<Quiz[]> => {
+  const refDb = ref(database, `users/${user.uid}/intentos`);
+  const snapshot = await get(refDb);
+
+  if (!snapshot.exists()) return [];
+
+  const data = snapshot.val();
+  const attempts: Quiz[] = Object.entries(data).map(([_, value]) => value as Quiz);
+  return attempts.sort((a, b) => b.created_at - a.created_at);
 };
