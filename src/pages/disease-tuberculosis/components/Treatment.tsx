@@ -10,8 +10,29 @@ const Treatment = () => {
       </div>
       <div className="mt-6 gap-4 p-4 bg-indigo-950 rounded border-2 border-indigo-800">
         <p className="text-indigo-200  text-center">
-        El tratamiento de la neumonía depende del tipo y la gravedad, pero generalmente involucra antibióticos para neumonías bacterianas y antivirales para neumonías virales. El reposo, líquidos y medicamentos para aliviar la fiebre y la tos pueden ser útiles independientemente del tipo de neumonía. En casos graves, puede ser necesario hospitalización, terapia respiratoria y otros procedimientos. 
+          El tratamiento de la tuberculosis pulmonar consiste en un esquema de antibióticos
+          que debe seguirse de manera estricta durante varios meses para asegurar la curación 
+          completa y evitar recaídas o resistencia a los medicamentos.     
         </p>
+        <ul className="text-indigo-200 space-y-2 ms-5 mt-4">
+            <li className="list-disc">
+              Tratamiento directamente observado (DOTS):
+              En muchos países se aplica este sistema donde un profesional de salud supervisa la toma 
+              diaria del medicamento para asegurar que el paciente cumpla con el tratamiento. 
+            </li>
+            <li className="list-disc">¿Y si hay resistencia a los medicamentos?
+              Tuberculosis multirresistente (TB-MDR):
+              Es resistente al menos a isoniazida y rifampicina.
+              Requiere un tratamiento más largo (18-24 meses) con otros antibióticos como:
+              Bedaquilina
+              Linezolid
+              Levofloxacino o moxifloxacino
+              Clofazimina, entre otros.
+            </li>
+            <li className="list-disc">Importancia del tratamiento:
+              Curar al paciente. Cortar la cadena de transmisión. Evitar recaídas. Prevenir la resistencia a medicamentos.
+            </li>
+          </ul>
       </div>
     </div>
   </>
