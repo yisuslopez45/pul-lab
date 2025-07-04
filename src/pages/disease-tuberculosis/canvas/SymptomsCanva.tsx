@@ -27,20 +27,28 @@ const SymptomsCanva = () => {
                     minPolarAngle={Math.PI / 2}
                     maxPolarAngle={Math.PI / 2}
                 />
-                <ambientLight  intensity={1} />
-                <directionalLight
-                     color="white"
-                     position={[5, 100, 50]} 
-                     intensity={8}
-                     castShadow={true}
+                <ambientLight  intensity={1.5} />
+             <directionalLight
+                    castShadow
+                    position={[10, 50, 10]}
+                    intensity={5}
+                    shadow-mapSize-width={2048}
+                    shadow-mapSize-height={2048}
+                    shadow-camera-near={1}
+                    shadow-camera-far={100}
+                    shadow-camera-left={-50}
+                    shadow-camera-right={50}
+                    shadow-camera-top={50}
+                    shadow-camera-bottom={-50}
+                    />
+
+                <pointLight
+                    color={'cyan'}
+                    position={[2, 5, 5]}
+                    intensity={20}
+                    castShadow={true}
                 />
-                <directionalLight
-                     color="white"
-                     position={[1, 10, 5]} 
-                     intensity={4}
-                     castShadow={true}
-                />
-                <Environment preset="city" background={false} />
+                <Environment preset="city" background={true} />
                 <SymptomsTuberculosisModel scale={60} position={[0,0,0.8]} castShadow  />
                 <Html center>
                     {/* <Button onClick={handleClick} label="Pulmón" color="violet" /> */}

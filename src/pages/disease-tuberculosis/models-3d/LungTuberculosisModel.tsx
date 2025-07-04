@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
 }
 
 export function LungTuberculosisModel(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/models-3d/tuberculosis/Lung-tuberculosis.glb') as unknown as GLTFResult
+  const { nodes, materials } = useGLTF('/models-3d/tuberculosis/lung-tuberculosis.glb') as unknown as GLTFResult
   const groupRef = useRef<THREE.Group>(null);
   useFrame(() => {
       if (groupRef.current) {
@@ -38,4 +38,4 @@ export function LungTuberculosisModel(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('/models-3d/tuberculosis/Lung-tuberculosis.glb')
+useGLTF.preload('/models-3d/tuberculosis/lung-tuberculosis.glb')
