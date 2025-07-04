@@ -9,8 +9,11 @@ interface Props {
 
 const FloorModel = (props: Props) => {
   return (
-    <mesh rotation-x={-Math.PI / 2} receiveShadow={true} position={props.position}>
-    <planeGeometry args={[50, 50]} />
+    <mesh 
+      rotation-x={-Math.PI / 2} 
+      receiveShadow={true} 
+      position={props.position}>
+    <planeGeometry args={[80, 80]} />
     <meshStandardMaterial
       roughness={props.roughness}
       metalness={props.metalnesVal}
