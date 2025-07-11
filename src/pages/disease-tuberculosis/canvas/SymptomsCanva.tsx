@@ -6,6 +6,7 @@ import { Vector3 } from 'three';
 import FloorModel from "../models-3d/FloorModel";
 import Html3D from "../../disease-pneumonia/components/Html3D";
 import { SymptomsTuberculosisModel } from "../models-3d/SymptomsTuberculosisModel";
+import AlertText3D from "../../disease-pneumonia/texts/AlertText3D";
 
 
 const SymptomsCanva = () => {
@@ -54,11 +55,12 @@ const SymptomsCanva = () => {
                     {/* <Button onClick={handleClick} label="Pulmón" color="violet" /> */}
                 </Html>
                 <FloorModel color="#3F72AF" position={position} metalnesVal={1} roughness={0.7}  />
-                <Html3D position={[20,0,40]} transform={false} >
-                    <h1>
-                        Camiloooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-                    </h1>
-                </Html3D>
+                 <AlertText3D
+                    text={`LA TOS ES UN SINTOMA `} 
+                    height={0.1} 
+                    size={3} 
+                    position={ [-17, -5, 30]} 
+                />
             </Canvas>
         </Suspense>
         </>
