@@ -4,7 +4,6 @@ import { Canvas } from "@react-three/fiber";
 //import Button from "../../../layout/components/Button";
 import { Vector3 } from 'three';
 import FloorModel from "../models-3d/FloorModel";
-import Html3D from "../../disease-pneumonia/components/Html3D";
 import { SymptomsTuberculosisModel } from "../models-3d/SymptomsTuberculosisModel";
 import AlertText3D from "../../disease-pneumonia/texts/AlertText3D";
 
