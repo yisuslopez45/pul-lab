@@ -7,6 +7,7 @@ import { JSX, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { useFrame } from '@react-three/fiber'
+import useStoreLung from '../../disease-pneumonia/store/useStoreLung'
 
 
 type GLTFResult = GLTF & {
@@ -21,8 +22,9 @@ type GLTFResult = GLTF & {
 export function LungTuberculosisModel(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/models-3d/tuberculosis/lung-tuberculosis.glb') as unknown as GLTFResult
   const groupRef = useRef<THREE.Group>(null);
+  const { isActiveAnimation } = useStoreLung();
   useFrame(() => {
-      if (groupRef.current) {
+      if (groupRef.current && isActiveAnimation) {
         groupRef.current.rotation.y += 0.003;
       }
     });
