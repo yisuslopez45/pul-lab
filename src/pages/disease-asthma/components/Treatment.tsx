@@ -1,3 +1,4 @@
+import InhalerAsthmaCanva from "../canvas/InhalerAsthmaCanva";
 
 const Treatment = () => {
   return (
@@ -53,6 +54,8 @@ const Treatment = () => {
             El tratamiento debe ser personalizado por un médico, y puede requerir ajustes según la respuesta del paciente.
           </p>
 
+
+          <InhalerAsthmaCanva/>
         </div>
       </div>
     </>
