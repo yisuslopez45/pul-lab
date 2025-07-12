@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from "react";
+import { Suspense, useCallback, useMemo } from "react";
 import { OrbitControls, Environment, Html, KeyboardControlsEntry, KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 //import Button from "../../../layout/components/Button";
@@ -6,13 +6,22 @@ import { Vector3 } from 'three';
 import FloorModel from "../models-3d/FloorModel";
 import { SymptomsTuberculosisModel } from "../models-3d/SymptomsTuberculosisModel";
 import AlertText3D from "../../disease-pneumonia/texts/AlertText3D";
+import Html3D from "../../disease-pneumonia/components/Html3D";
+import Button from "../../../layout/components/Button";
+import useStoreLung from "../../disease-pneumonia/store/useStoreLung";
+import Spinner from "../../../layout/components/Spinner";
 
 enum Controls {
     animation = "animation",
 }
 const SymptomsCanva = () => {
     //const { setStateAnimation , isActiveAnimation} = useStoreLung()
-    const position: Vector3 = new Vector3(0, -32, -9)
+    const { setStateAnimation , isActiveAnimation} = useStoreLung()
+    const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        setStateAnimation(!isActiveAnimation);
+    }, [setStateAnimation, isActiveAnimation]);
+
 
     // const handleClick = useCallback(() => {
     //     setStateAnimation(!isActiveAnimation);
@@ -22,13 +31,23 @@ const SymptomsCanva = () => {
         []
     );
 
+    const position = new Vector3(0,-32,-9);
 
     return (
         <>
-            <Suspense fallback={<h5>Cargando...</h5>}>
+            <Suspense fallback={<Spinner />}>
                 <KeyboardControls map={map}>
                     <Canvas camera={{ position: [2, 10, 50] }} style={{ height: "80vh", width: "100%" }} shadows={true}>
+                        <Html3D transform={false} position={[0, 35, 0]} distanceFactor={40} >
+                            <Button
+                                px={3}
+                                py={2}
+                                onClick={handleClick}
+                                label="Interactuar"
+                                color={!isActiveAnimation ? 'amber' : 'green'}
+                            />
 
+                        </Html3D>
                         <OrbitControls
                             enableZoom={true}
                             enableRotate={true}
@@ -68,7 +87,7 @@ const SymptomsCanva = () => {
                             size={3}
                             position={[0, -5, 30]}
                         />
-                         <AlertText3D
+                        <AlertText3D
                             text={`PRESIONE E `}
                             height={0.1}
                             size={3}
