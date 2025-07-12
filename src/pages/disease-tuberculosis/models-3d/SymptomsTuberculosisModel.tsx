@@ -7,6 +7,7 @@ import { JSX, useRef } from 'react'
 import { useGLTF, useKeyboardControls } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { useFrame } from '@react-three/fiber'
+import useStoreLung from '../../disease-pneumonia/store/useStoreLung'
 
 
 type GLTFResult = GLTF & {
@@ -22,7 +23,14 @@ export function SymptomsTuberculosisModel(props: JSX.IntrinsicElements['group'])
   const { nodes, materials } = useGLTF('/models-3d/tuberculosis/sintomas.glb') as unknown as GLTFResult
   const groupRef = useRef<THREE.Group>(null);
   const [, get] = useKeyboardControls();
-  useFrame(() => { 
+  const { isActiveAnimation } = useStoreLung()
+  useFrame(() => {
+    if (!groupRef.current)return
+    if (isActiveAnimation) {
+      groupRef.current.rotation.y += 0.03;
+    } else {
+      groupRef.current.rotation.y += 0.003;
+    }
     const { animation } = get();
     if (animation && groupRef.current) {
       groupRef.current.rotation.y += 0.04;
