@@ -62,7 +62,7 @@ const AsthmaCanva = () => {
           />
 
           <Text3D
-            font="/fonts/Cartoon.json"
+            font="/fonts/retro.json"
             size={10}
             height={2}
             curveSegments={12}
@@ -73,7 +73,7 @@ const AsthmaCanva = () => {
             position={[-28, -5, 15]}
           >
             Presione "x"
-            <meshStandardMaterial color="#6c4eff" />
+            <meshStandardMaterial color="#0ef02c" />
           </Text3D>
 
           <Text rotation={[0, 0, 7]} fontSize={6} position={positionText} >
