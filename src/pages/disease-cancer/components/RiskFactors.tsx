@@ -1,3 +1,5 @@
+import RiskFactorsCanvas from "../canvas/RiskFactorsCanvas";
+
 const RiskFactorsLung = () => {
     return (
       <div className="mt-12 w-full p-6 bg-indigo-900/80 rounded-lg border-4 border-indigo-700">
@@ -73,6 +75,7 @@ const RiskFactorsLung = () => {
               pero aumenta la probabilidad. Consulta a un neumólogo si tienes múltiples factores.
             </p>
           </div>
+          <RiskFactorsCanvas />
         </div>
       </div>
     );
