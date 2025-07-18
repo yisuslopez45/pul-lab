@@ -1,4 +1,4 @@
-
+import TreatmentCanva from "../canvas/TreatmentCanva";
 const Treatment = () => {
   return (
     <>
@@ -33,10 +33,11 @@ const Treatment = () => {
               Curar al paciente. Cortar la cadena de transmisión. Evitar recaídas. Prevenir la resistencia a medicamentos.
             </li>
           </ul>
+          <TreatmentCanva />
       </div>
     </div>
   </>
-  )
-}
+  );
+};
 
-export default Treatment
+export default Treatment;
