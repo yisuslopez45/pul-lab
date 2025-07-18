@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import InhalerAsthmaCanva from "../canvas/InhalerAsthmaCanva"; // Assuming this path is correct
+import InhalerAsthmaCanva from "../canvas/InhalerAsthmaCanva"; 
 
 const Treatment = () => {
   return (
@@ -77,7 +77,7 @@ const Treatment = () => {
             Es crucial que el tratamiento del asma sea <strong className="text-red-400">personalizado y supervisado por un médico</strong>, quien podrá ajustarlo según la respuesta individual del paciente y la evolución de la enfermedad.
           </p>
 
-          {/* Ensure InhalerAsthmaCanva is wrapped in Suspense if it uses async imports */}
+          
           <Suspense fallback={<div className="text-center text-indigo-300 mt-8">Cargando modelo...</div>}>
             <InhalerAsthmaCanva/>
           </Suspense>

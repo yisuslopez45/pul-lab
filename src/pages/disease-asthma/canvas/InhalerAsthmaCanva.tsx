@@ -5,7 +5,7 @@ import { Vector3 } from 'three';
 import { InhalerAsthmaModel } from "../models-3d/InhalerAsthmaModel";
 import FloorModel from "../models-3d/FloorModel";
 
-const AsthmaCanva = () => {
+const InhalerAsthmaCanva = () => {
   const [controlsEnabled, setControlsEnabled] = useState(false);
   const [modelRotationY, setModelRotationY] = useState(45);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
@@ -99,4 +99,4 @@ const AsthmaCanva = () => {
   );
 };
 
-export default AsthmaCanva;
+export default InhalerAsthmaCanva;
