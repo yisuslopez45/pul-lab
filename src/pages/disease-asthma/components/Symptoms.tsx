@@ -1,5 +1,5 @@
-import { Suspense } from "react"; // Import Suspense
-import PersonAsthmaCanva from "../canvas/PersonAsthmaCanva"; // Assuming this path is correct
+import { Suspense } from "react"; 
+import PersonAsthmaCanva from "../canvas/PersonAsthmaCanva"; 
 
 const Symptoms = () => {
   return (
@@ -42,7 +42,6 @@ const Symptoms = () => {
             Es importante recordar que durante una <strong className="text-red-400">crisis asmática</strong>, estos síntomas se intensifican y pueden volverse peligrosos si no se administran medicamentos de forma oportuna.
           </p>
 
-          {/* Ensure PersonAsthmaCanva is wrapped in Suspense if it uses async imports */}
           <Suspense fallback={<div className="text-center text-indigo-300 mt-8">Cargando modelo...</div>}>
             <PersonAsthmaCanva/>
           </Suspense>

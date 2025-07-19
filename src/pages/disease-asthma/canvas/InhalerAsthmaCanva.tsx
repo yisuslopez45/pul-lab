@@ -21,7 +21,7 @@ const InhalerAsthmaCanva = () => {
 
   const handleRotate = (direction: "left" | "right") => {
     const delta = direction === "left" ? -0.2 : 0.2;
-    setModelRotationY(prev => prev + delta); // Update rotation state
+    setModelRotationY(prev => prev + delta);
   };
 
   useEffect(() => {

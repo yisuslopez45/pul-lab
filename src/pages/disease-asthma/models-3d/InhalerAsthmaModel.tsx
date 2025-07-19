@@ -15,7 +15,7 @@ export function InhalerAsthmaModel({ triggerAnimation, ...props }: InhalerAsthma
 
   const { nodes, materials, animations } = useGLTF('/models-3d/asthma/inhaler.glb') as unknown as {
     nodes: { inhaler: Mesh, canister: Mesh, 'case': Mesh };
-    materials: { inhalerMaterial: Material; canisterMaterial: Material;};
+    materials: { inhalerMaterial: Material; canisterMaterial: Material; };
     animations: any;
   };
 
@@ -40,36 +40,31 @@ export function InhalerAsthmaModel({ triggerAnimation, ...props }: InhalerAsthma
   }, [triggerAnimation, actions]);
 
   return (
-    <group
-      {...props}
-      ref={groupRef}
-      dispose={null}
-      castShadow
-      receiveShadow
-      name="Scene"
-    >
-      <mesh
-        name="case"
-        castShadow
-        receiveShadow
-        geometry={nodes.case.geometry}
-        material={materials.canisterMaterial}
-      />
-      <mesh
-        name="inhaler"
-        castShadow
-        receiveShadow
-        geometry={nodes.inhaler.geometry}
-        material={materials.inhalerMaterial}
-        position={[0, 1.5, 0]}
-      />
-      <mesh
-        name="canister"
-        castShadow
-        receiveShadow
-        geometry={nodes.canister.geometry}
-        material={materials.canisterMaterial}
-      />
+    <group {...props} ref={groupRef}  dispose={null} >
+      <group name="Scene">
+        <mesh
+          name="case"
+          castShadow
+          receiveShadow
+          geometry={nodes['case'].geometry}
+          material={materials.canisterMaterial}
+        />
+        <mesh
+          name="inhaler"
+          castShadow
+          receiveShadow
+          geometry={nodes.inhaler.geometry}
+          material={materials.inhalerMaterial}
+          position={[0, 1.5, 0]}
+        />
+        <mesh
+          name="canister"
+          castShadow
+          receiveShadow
+          geometry={nodes.canister.geometry}
+          material={materials.canisterMaterial}
+        />
+      </group>
     </group>
   );
 }
