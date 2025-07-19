@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useAnimations } from "@react-three/drei";
-import { ThreeElements } from "@react-three/fiber";
-import { Group, Material, Mesh } from 'three';
+import { ThreeElements, useLoader } from "@react-three/fiber";
+import { Group/* , Material, Mesh  */} from 'three';
 import { useGLTF } from '@react-three/drei';
+import { GLTFLoader } from "three-stdlib";
 
 type GroupElementProps = ThreeElements['group'];
 
@@ -13,9 +14,9 @@ interface InhalerAsthmaModelProps extends GroupElementProps {
 export function InhalerAsthmaModel({ triggerAnimation, ...props }: InhalerAsthmaModelProps) {
   const groupRef = useRef<Group>(null);
 
-  const { nodes, materials, animations } = useGLTF('/models-3d/asthma/inhaler.glb') as unknown as {
-    nodes: { inhaler: Mesh, canister: Mesh, 'case': Mesh };
-    materials: { inhalerMaterial: Material; canisterMaterial: Material; };
+  const { nodes, materials, animations } = useLoader(GLTFLoader, '/models-3d/asthma/inhaler.glb') as unknown as {
+    nodes: any;
+    materials: any;
     animations: any;
   };
 
