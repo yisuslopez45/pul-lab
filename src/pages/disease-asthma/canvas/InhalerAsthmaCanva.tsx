@@ -83,12 +83,12 @@ const InhalerAsthmaCanva = () => {
           <Environment preset="city" background={false} />
 
           <group rotation={[0, modelRotationY, 0]}>
-            <InhalerAsthmaModel
+            {/* <InhalerAsthmaModel
               scale={9}
               position={[0, -15, 0]}
               castShadow
               triggerAnimation={triggerAnimation}
-            />
+            /> */}
             <Sparkles size={40} scale={95} speed={10} />
           </group>
 
