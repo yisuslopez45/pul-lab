@@ -1,33 +1,33 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, /* useEffect, */ useState } from "react";
 import { OrbitControls, Environment, Sparkles, Text3D, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Vector3 } from 'three';
-import { InhalerAsthmaModel } from "../models-3d/InhalerAsthmaModel";
+//import { InhalerAsthmaModel } from "../models-3d/InhalerAsthmaModel";
 import FloorModel from "../models-3d/FloorModel";
 
 const InhalerAsthmaCanva = () => {
   const [controlsEnabled, setControlsEnabled] = useState(false);
   const [modelRotationY, setModelRotationY] = useState(45);
-  const [triggerAnimation, setTriggerAnimation] = useState(false);
+  //const [triggerAnimation, setTriggerAnimation] = useState(false);
   const position: Vector3 = new Vector3(0, -30, 0);
   const positionText: Vector3 = new Vector3(-40, 18, 0);
 
-  const handleKeyDown = (event: KeyboardEvent) => {
+  /* const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key.toLowerCase() === "x") {
       setTriggerAnimation(true);
       setTimeout(() => setTriggerAnimation(false), 100);
     }
-  };
+  }; */
 
   const handleRotate = (direction: "left" | "right") => {
     const delta = direction === "left" ? -0.2 : 0.2;
     setModelRotationY(prev => prev + delta);
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, []); */
 
   return (
     <div style={{ position: "relative", width: "100%", height: "70vh" }}>
