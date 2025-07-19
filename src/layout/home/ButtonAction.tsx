@@ -1,12 +1,15 @@
+import React from 'react';
 
 interface Props {
     icon?: React.ReactNode,
-    label : string
+    label : string,
+    onClick?: () => void;
 }
 
-const ButtonAction = ( { label , icon } : Props) => {
+const ButtonAction = ( { label , icon, onClick } : Props) => {
   return (
     <button
+       onClick={onClick}
        className={`
         relative px-10 py-3 font-bold text-lg uppercase outline-none
         tracking-wider transition-all duration-150 rounded-md  
@@ -23,7 +26,6 @@ const ButtonAction = ( { label , icon } : Props) => {
         {icon}
         </span>
       </div>
-
     </button>
   );
 };
