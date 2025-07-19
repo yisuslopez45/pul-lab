@@ -2,7 +2,7 @@ import { Suspense, /* useEffect, */ useState } from "react";
 import { OrbitControls, Environment, Sparkles, Text3D, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Vector3 } from 'three';
-//import { InhalerAsthmaModel } from "../models-3d/InhalerAsthmaModel";
+import { InhalerAsthmaModel } from "../models-3d/InhalerAsthmaModel";
 import FloorModel from "../models-3d/FloorModel";
 
 const InhalerAsthmaCanva = () => {
@@ -83,12 +83,12 @@ const InhalerAsthmaCanva = () => {
           <Environment preset="city" background={false} />
 
           <group rotation={[0, modelRotationY, 0]}>
-            {/* <InhalerAsthmaModel
+            <InhalerAsthmaModel
               scale={9}
               position={[0, -15, 0]}
               castShadow
-              triggerAnimation={triggerAnimation}
-            /> */}
+              triggerAnimation={false}
+            />
             <Sparkles size={40} scale={95} speed={10} />
           </group>
 
