@@ -13,7 +13,7 @@ interface InhalerAsthmaModelProps extends GroupElementProps {
 export function InhalerAsthmaModel({ triggerAnimation, ...props }: InhalerAsthmaModelProps) {
   const groupRef = useRef<Group>(null);
 
-  const { nodes, materials, animations } = useGLTF('/models-3d/asthma/inhaler.glb') as unknown as {
+  const { nodes, materials, animations } = useGLTF('/models-3d/asthma/Inhaler.glb') as unknown as {
     nodes: { inhaler: Mesh, canister: Mesh, 'case': Mesh };
     materials: { inhalerMaterial: Material; canisterMaterial: Material; };
     animations: any;
