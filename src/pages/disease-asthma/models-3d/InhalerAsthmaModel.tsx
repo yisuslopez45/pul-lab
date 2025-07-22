@@ -10,6 +10,7 @@ interface InhalerAsthmaModelProps extends GroupElementProps {
   triggerAnimation: boolean;
 }
 
+
 export function InhalerAsthmaModel({ triggerAnimation, ...props }: InhalerAsthmaModelProps) {
   const groupRef = useRef<Group>(null);
 
