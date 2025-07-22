@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useAnimations } from "@react-three/drei";
-import { ThreeElements, useLoader } from "@react-three/fiber";
-import { Group/* , Material, Mesh  */} from 'three';
+import { ThreeElements } from "@react-three/fiber";
+
+import { Group, Material, Mesh } from 'three';
 import { useGLTF } from '@react-three/drei';
-import { GLTFLoader } from "three-stdlib";
 
 type GroupElementProps = ThreeElements['group'];
 
