@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useAnimations } from "@react-three/drei";
-import { ThreeElements } from "@react-three/fiber";
-import { Group, Material, Mesh } from 'three';
+import { ThreeElements, useLoader } from "@react-three/fiber";
+import { Group/* , Material, Mesh  */} from 'three';
 import { useGLTF } from '@react-three/drei';
+import { GLTFLoader } from "three-stdlib";
 
 type GroupElementProps = ThreeElements['group'];
 
@@ -69,4 +70,4 @@ export function InhalerAsthmaModel({ triggerAnimation, ...props }: InhalerAsthma
   );
 }
 
-useGLTF.preload('/models-3d/asthma/inhaler.glb');
+useGLTF.preload('/public/assets/inhaler.glb');
