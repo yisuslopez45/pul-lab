@@ -1,87 +1,86 @@
-import { Suspense, useState, useMemo, useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, Sky, Stars, Sparkles, Html, KeyboardControls, useKeyboardControls } from '@react-three/drei';
-import { EffectComposer, Bloom, DepthOfField } from '@react-three/postprocessing';
-import * as THREE from 'three';
-import RiskFactorsModel from '../models-3d/RiskFactorsModel';
+import { Suspense, useMemo, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Environment, Sky, Stars, Sparkles, Html, KeyboardControls, useKeyboardControls, KeyboardControlsEntry } from "@react-three/drei";
+import { EffectComposer, Bloom, DepthOfField } from "@react-three/postprocessing";
+import * as THREE from "three";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Button from "../../../layout/components/Button";
+import Spinner from "../../../layout/components/Spinner";
 import FloorModel from '../models-3d/Floor';
+import RiskFactorsModel from '../models-3d/RiskFactorsModel';
+
+enum Controls {
+  forward = "forward",
+  backward = "backward",
+  left = "left",
+  right = "right"
+}
 
 export default function RiskFactorsCanvas() {
+  const [rotating, setRotating] = useState(false);
   const [loading, setLoading] = useState(true);
+
+
+  const map = useMemo<KeyboardControlsEntry<Controls>[]>(() => [
+    { name: Controls.forward, keys: ["ArrowUp", "KeyW"] },
+    { name: Controls.backward, keys: ["ArrowDown", "KeyS"] },
+    { name: Controls.left, keys: ["ArrowLeft", "KeyA"] },
+    { name: Controls.right, keys: ["ArrowRight", "KeyD"] }
+  ], []);
 
   return (
     <div style={{ height: '100vh', position: 'relative' }}>
       {loading && <LoadingScreen />}
 
-      <KeyboardControls
-        map={[
-          { name: 'left', keys: ['ArrowLeft', 'KeyA'] },
-          { name: 'right', keys: ['ArrowRight', 'KeyD'] },
-        ]}
-      >
+      <KeyboardControls map={map}>
         <Canvas
-          shadows={{ type: THREE.PCFSoftShadowMap }} // 
-          camera={{ position: [0, 2, 3], fov: 50 }}
+          shadows={{ type: THREE.PCFSoftShadowMap }}
+          camera={{ position: [0, 2, 6], fov: 50 }}
           onCreated={({ gl }) => {
             setLoading(false);
-            gl.shadowMap.enabled = true; 
+            gl.shadowMap.enabled = true;
             gl.shadowMap.type = THREE.PCFSoftShadowMap;
           }}
         >
-          <Suspense fallback={null}>
-            {/* Luces */}
-            <ambientLight intensity={0.2} />
+          <Suspense fallback={<Spinner />}>
+
+            <ambientLight intensity={0.3} />
             <directionalLight
-              position={[4, 10, 4]}
-              intensity={2}
+              position={[10, 20, 10]}
+              intensity={3}
               castShadow
               shadow-mapSize-width={2048}
               shadow-mapSize-height={2048}
-              shadow-camera-near={0.5}
-              shadow-camera-far={50}
-              shadow-camera-left={-10}
-              shadow-camera-right={10}
-              shadow-camera-top={10}
-              shadow-camera-bottom={-10}
             />
-            <pointLight position={[-4, 5, -4]} intensity={1} castShadow /> {}
-            <spotLight position={[0, 8, 0]} angle={0.4} penumbra={0.5} intensity={2} castShadow />
+            <pointLight position={[-4, 5, -4]} intensity={1.5} color="#a0a0ff" castShadow />
+            <spotLight position={[0, 10, 0]} angle={0.3} penumbra={0.8} intensity={2} castShadow />
 
-            {/* Suelo más arriba y más pequeño */}
-            <FloorModel
-              position={[0, -0.1, 0]}
-              scale={0.5}
-              color="#3d2c5a"
-              roughness={0.9}
-              metalnesVal={0}
-              receiveShadow
-            />
 
-            {/* Grupo que rota */}
-            <KeyboardEvents>
-              <AnimatedRiskFactors scale={9} />
-            </KeyboardEvents>
+            <SceneContent rotating={rotating} setRotating={setRotating} />
 
-            {/* Texto 2D */}
+            {/* Texto */}
             <Html fullscreen>
-              <h1 style={{ position: 'absolute', top: 20, left: 20, color: 'white' }}>
+              <h1 style={{
+                position: 'absolute', top: 20, left: 20, color: 'white',
+                fontFamily: 'sans-serif'
+              }}>
                 Panel de Factores de Riesgo
               </h1>
             </Html>
 
-            {/* Extras */}
-            <Environment preset="sunset" />
+
+            <Environment preset="night" background />
             <Sky sunPosition={[100, 20, 100]} />
             <Stars radius={100} depth={50} count={3000} fade />
-            <Sparkles count={50} speed={0.2} size={2} scale={10} />
+            <Sparkles count={30} speed={0.2} size={1.5} scale={10} />
 
-            {/* Efectos */}
+
             <EffectComposer>
-              <Bloom intensity={0.5} luminanceThreshold={0.2} />
+              <Bloom intensity={0.3} luminanceThreshold={0.2} />
               <DepthOfField focusDistance={0.01} focalLength={0.02} bokehScale={2} />
             </EffectComposer>
 
-            <OrbitControls enableZoom enableRotate enablePan />
+            <OrbitControls enableZoom enablePan />
           </Suspense>
         </Canvas>
       </KeyboardControls>
@@ -89,67 +88,67 @@ export default function RiskFactorsCanvas() {
   );
 }
 
-// Modelo con materiales PBR + sombras
-function AnimatedRiskFactors({ scale = 1 }) {
-  const group = useRef<THREE.Group>(null!);
-  const textureLoader = new THREE.TextureLoader();
-  const [hovered, setHovered] = useState(false);
-  const [rotating, setRotating] = useState(false);
+interface SceneContentProps {
+  rotating: boolean;
+  setRotating: (r: boolean) => void;
+}
 
-  const [colorMap, normalMap, roughnessMap, metalnessMap] = useMemo(() => [
-    textureLoader.load('/textures/basecolor.jpg'),
-    textureLoader.load('/textures/normal.jpg'),
-    textureLoader.load('/textures/roughness.jpg'),
-    textureLoader.load('/textures/metallic.jpg')
-  ], []);
-
-  const material = new THREE.MeshStandardMaterial({
-    map: colorMap,
-    normalMap,
-    roughnessMap,
-    metalnessMap,
-    roughness: 0.8,
-    metalness: 0.3
-  });
+const SceneContent = ({ rotating, setRotating }: SceneContentProps) => {
+  const groupRef = useRef<THREE.Group>(null);
+  const modelRef = useRef<THREE.Group>(null);
+  const [, get] = useKeyboardControls<Controls>();
 
   useFrame((_, delta) => {
-    if (rotating && group.current) {
-      group.current.rotation.y += delta * 0.8;
+    if (rotating && modelRef.current) {
+      modelRef.current.rotation.y += delta * 0.8;
+    }
+
+    const { forward, backward, left, right } = get();
+    if (modelRef.current) {
+      if (forward) modelRef.current.position.z -= 0.05;
+      if (backward) modelRef.current.position.z += 0.05;
+      if (left) modelRef.current.position.x -= 0.05;
+      if (right) modelRef.current.position.x += 0.05;
     }
   });
 
   return (
-    <group
-      ref={group}
-      scale={scale}
-      onClick={() => setRotating(!rotating)}
-      onPointerEnter={() => setHovered(true)}
-      onPointerLeave={() => setHovered(false)}
-      castShadow 
-      receiveShadow
-    >
-      <RiskFactorsModel material={material} scale={hovered ? 1.1 : 1} castShadow receiveShadow />
-    </group>
+    <>
+      <group ref={groupRef}>
+        <group
+          ref={modelRef}
+          onClick={() => setRotating(!rotating)}
+        >
+          <RiskFactorsModel scale={8} castShadow receiveShadow />
+        </group>
+
+        <FloorModel
+          position={[0, 0, 0]}
+          scale={[0.5, 0.5, 0.5]}
+          color="#3d2c5a"
+          roughness={0.9}
+          metalnesVal={0}
+          receiveShadow
+        />
+      </group>
+
+      <Html position={[5, 0, 3]} distanceFactor={15}>
+        <Button
+          onClick={() => groupRef.current && (groupRef.current.rotation.y -= Math.PI / 8)}
+          label="" px={1} py={1} icon={<ChevronRight />}
+        />
+      </Html>
+      <Html position={[-5, 0, 3]} distanceFactor={15}>
+        <Button
+          onClick={() => groupRef.current && (groupRef.current.rotation.y += Math.PI / 8)}
+          label="" px={1} py={1} icon={<ChevronLeft />}
+        />
+      </Html>
+    </>
   );
-}
+};
 
-// Rotación con teclado
-function KeyboardEvents({ children }: { children: React.ReactNode }) {
-  const [, get] = useKeyboardControls();
-  const ref = useRef<THREE.Group>(null);
 
-  useFrame(() => {
-    const { left, right } = get();
-    if (ref.current) {
-      if (left) ref.current.rotation.y += 0.05;
-      if (right) ref.current.rotation.y -= 0.05;
-    }
-  });
-
-  return <group ref={ref}>{children}</group>;
-}
-
-// Pantalla de carga
 function LoadingScreen() {
   return (
     <div style={{
@@ -158,6 +157,9 @@ function LoadingScreen() {
       padding: '2rem',
       width: '100%',
       height: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -185,3 +187,6 @@ function LoadingScreen() {
     </div>
   );
 }
+
+
+

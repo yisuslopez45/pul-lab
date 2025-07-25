@@ -1,3 +1,6 @@
+import DiseasePreventionModel from "../canvas/PreventionCanvas";
+
+
 const LungCancerPrevention = () => {
   return (
     <>
@@ -18,6 +21,7 @@ const LungCancerPrevention = () => {
             <li>Realiza ejercicio regularmente.</li>
             <li>Consulta a tu médico si tienes antecedentes familiares.</li>
           </ul>
+          <DiseasePreventionModel />
         </div>
       </div>
     </>
