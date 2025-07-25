@@ -1,3 +1,4 @@
+import PreventionCanva from "../canvas/PreventionCanva"
 
 const Prevention = () => {
   return (
@@ -39,10 +40,11 @@ const Prevention = () => {
               Rehabilitación y seguimiento de secuelas pulmonares si las hay.
             </li>
         </ul>
+        <PreventionCanva/>
       </div>
     </div>
   </>
   )
 }
 
-export default Prevention
+export default Prevention;

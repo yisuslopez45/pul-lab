@@ -27,7 +27,7 @@ export function SymptomsTuberculosisModel(props: JSX.IntrinsicElements['group'])
   useFrame(() => {
     if (!groupRef.current)return
     if (isActiveAnimation) {
-      groupRef.current.rotation.y += 0.03;
+      groupRef.current.rotation.y -= 0.03;
     } else {
       groupRef.current.rotation.y += 0.003;
     }
