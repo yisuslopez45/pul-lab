@@ -6,7 +6,6 @@ import Layout from './layout/Layout'
 import App from './App'
 import Pneumonia from './pages/disease-pneumonia/Pneumonia'
 import LungCancer from './pages/disease-cancer/LungCancer'
-import Page2 from './pages/page-2/Page2'
 import NotFound from './pages/not-found/NotFound'
 
 // Pneumonia
@@ -37,7 +36,9 @@ import SymptomsTuberculosis from './pages/disease-tuberculosis/components/Sympto
 import TreatmentTuberculosis from './pages/disease-tuberculosis/components/Treatment'
 import Tuberculosis from './pages/disease-tuberculosis/Tuberculosis'
 import Profile from './pages/profile/Profile'
-import Quiz from './pages/quiz/Quiz'
+/* import Quiz from './pages/quiz/Quiz' */
+
+import QuizGame from './pages/quiz-game/QuizGame'
 import Resultado from './pages/quiz/Resultado'
 
 
@@ -47,7 +48,8 @@ createRoot(document.getElementById('root')!).render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/perfil" element={<Profile />} />
-      <Route path="/quiz" element={<Quiz />} />
+      {/* <Route path="/quiz" element={<Quiz />} /> */}
+      <Route path="/quiz" element={<QuizGame />} />
       <Route path="/resultados" element={<Resultado />} />
 
        {/* Rutas para Cáncer de Pulmón */}
@@ -84,8 +86,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="tratamiento" element={<TreatmentTuberculosis />} />
  
         </Route>
-      
-      <Route path="/page-2" element={<Page2 />} />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   </Layout>
