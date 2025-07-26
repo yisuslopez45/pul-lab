@@ -51,14 +51,14 @@ createRoot(document.getElementById('root')!).render(
       <Route path="/resultados" element={<Resultado />} />
 
        {/* Rutas para Cáncer de Pulmón */}
-      <Route path="/enfermedad-cancer" element={<LungCancer />}>
-        <Route path="que-es" element={<WhatIsLungCancer />} />
-        <Route path="sintomas" element={<SymptomsLungCancer />} />
-        <Route path="factores-riesgo" element={<RiskFactorsLungCancer />} />
-        <Route path="tratamiento" element={<TreatmentLungCancer />} />
-        <Route path="prevencion" element={<PreventionLungCancer />} />
-      </Route>
-
+       <Route path="/enfermedad-cancer" element={<LungCancer />}>
+         <Route index element={<Navigate to="que-es" replace />} />
+         <Route path="que-es" element={<WhatIsLungCancer />} />
+         <Route path="sintomas" element={<SymptomsLungCancer />} />
+         <Route path="factores-riesgo" element={<RiskFactorsLungCancer />} />
+         <Route path="tratamiento" element={<TreatmentLungCancer />} />
+         <Route path="prevencion" element={<PreventionLungCancer />} />
+       </Route>
 
         <Route path="/enfermedad-neumonia" element={<Pneumonia />}>
           <Route index element={<Navigate to="que-es" replace />} />

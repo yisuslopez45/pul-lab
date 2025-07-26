@@ -1,3 +1,5 @@
+import DiseaseTreatmentScene from "../canvas/TreatmentCanvas";
+
 const TreatmentLungCancer = () => {
   return (
     <>
@@ -38,6 +40,7 @@ const TreatmentLungCancer = () => {
               <strong>Nota:</strong> Los tratamientos pueden combinarse. El plan se personaliza según cada caso mediante un equipo multidisciplinario.
             </p>
           </div>
+          <DiseaseTreatmentScene />
         </div>
       </div>
     </>
