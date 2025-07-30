@@ -13,7 +13,7 @@ export interface GameState {
     score: number;
     currentQuestionIndex: number;
     // Se añade 'intermission' para la pantalla entre preguntas.
-    status: 'not-started' | 'playing' | 'intermission' | 'feedback' | 'gameOver';
+    status: 'not-started' | 'playing' | 'intermission' | 'feedback' | 'gameOver' | 'finished';
     feedback: string;
 }
 

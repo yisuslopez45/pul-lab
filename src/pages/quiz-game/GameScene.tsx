@@ -8,6 +8,8 @@ import { AnswerObject } from './components/AnswerObject';
 import { Projectile } from './components/Proyectile';
 import { Cannon } from './components/Cannon';
 import { WorldBounds } from './components/WorldBounds';
+import { useAuthStore } from '../../store/authStore';
+import { savePartialQuiz, saveQuiz , loadPartialQuiz, clearPartialQuiz } from '../quiz/services/service_db';
 
 // Simulación de datos de un juego guardado. ESTO DEBRIA TRAER EL USUARIO EN SU ULTIMO INTENTO
 const mockSavedGame: SavedProgress | null = {
@@ -19,7 +21,7 @@ const mockSavedGame: SavedProgress | null = {
 
 export const GameScene: FC = () => {
     const { viewport } = useThree();
-    
+
     const [gameState, setGameState] = useState<GameState>({
         score: 0,
         currentQuestionIndex: 0,
@@ -31,6 +33,7 @@ export const GameScene: FC = () => {
     const [answers, setAnswers] = useState<AnswerState[]>([]);
     const [totalErrors, setTotalErrors] = useState(0);
     const [potentialScore, setPotentialScore] = useState(30);
+    const { userLooged } = useAuthStore()
 
     const spawnAnswers = (questionIndex: number) => {
         const question = quizData[questionIndex];
@@ -95,9 +98,11 @@ export const GameScene: FC = () => {
     const resetGame = () => {
         setGameState({ score: 0, currentQuestionIndex: 0, status: 'playing', feedback: ''});
         setTotalErrors(0);
+        if(userLooged) clearPartialQuiz(userLooged)
     }
 
     const startGame = () => {
+        if(userLooged) restoreProgress()
         if (mockSavedGame && mockSavedGame.status === "not-finished") {
             setGameState({
                 score: mockSavedGame.score,
@@ -117,7 +122,7 @@ export const GameScene: FC = () => {
         }
     }
     
-    const handleContinue = () => {
+    const handleContinue = async() => {
         const progressData: SavedProgress = {
             score: gameState.score,
             lastQuestionIndex: gameState.currentQuestionIndex, 
@@ -129,35 +134,70 @@ export const GameScene: FC = () => {
 
         if (nextIndex < quizData.length) {
 
-            console.log("JSON de progreso para guardar:", JSON.stringify(progressData, null, 2));
             setGameState(prev => ({ ...prev, currentQuestionIndex: nextIndex, status: 'playing', feedback: '' }));
+            await savePartialQuiz({
+                ...progressData,
+                user : userLooged!,
+                currentQuestionIndex : nextIndex,
+                status : 'playing',
+                feedback : ''
+            });
         } else {
             console.log("JSON de progreso para guardar:", JSON.stringify(progressData, null, 2));
             setGameState(prev => ({ ...prev, status: 'gameOver', feedback: '¡Quiz Completado!' }));
         }
     };
 
-    const handleSaveAndExit = () => {
+    const handleSaveAndExit = async() => {
         const progressData: SavedProgress = {
             score: gameState.score,
             lastQuestionIndex: gameState.currentQuestionIndex, 
             status: "not-finished",
             totalErrors: totalErrors
         };
-        console.log("JSON de progreso para guardar:", JSON.stringify(progressData, null, 2));
+
+        const nextIndex = gameState.currentQuestionIndex + 1;
+        await savePartialQuiz({
+            ...progressData,
+            user : userLooged!,
+            status : 'not-started',
+            currentQuestionIndex : nextIndex,
+            feedback: 'Progreso guardado'
+        });
         setGameState({ score: 0, currentQuestionIndex: 0, status: 'not-started', feedback: 'Progreso guardado'});
     };
 
-    const handleSaveFinalScore = () => {
-        const finalData: SavedProgress = {
+    const handleSaveFinalScore = async() => {
+        saveQuiz( {
             score: gameState.score,
-            lastQuestionIndex: gameState.currentQuestionIndex,
+            currentQuestionIndex: gameState.currentQuestionIndex,
             status: "finished",
-            totalErrors: totalErrors
-        };
-        console.log("JSON de puntuación final para guardar:", JSON.stringify(finalData, null, 2));
-        alert(`Puntuación final de ${gameState.score} guardada (revisa la consola).`);
+            totalErrors: totalErrors,
+            user: userLooged!,
+            feedback : ''
+        })
+        resetGame()
     };
+
+    const restoreProgress = async () => {
+        if (userLooged) {
+            const progress = await loadPartialQuiz(userLooged);
+            if (progress) {
+                setGameState(prev => ({
+                    ...prev,
+                    score: progress.score,
+                    currentQuestionIndex: progress.currentQuestionIndex ?? 0,
+                    status: 'playing',
+                    totalErrors: progress.totalErrors,
+                    feedback : progress.feedback ?? ' ',
+                }));
+            }
+        }
+    };
+
+    useEffect(() => {
+        restoreProgress();
+    },[userLooged]);
 
     return (
         <>
