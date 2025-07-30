@@ -5,7 +5,7 @@
 export interface GameState {
     score: number;
     currentQuestionIndex: number;
-    status: 'playing' | 'feedback' | 'gameOver';
+    status: 'not-started' | 'playing' | 'feedback' | 'gameOver';
     feedback: string;
 }
 

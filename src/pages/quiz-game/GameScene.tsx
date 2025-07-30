@@ -17,7 +17,7 @@ export const GameScene: FC = () => {
     const [gameState, setGameState] = useState<GameState>({
         score: 0,
         currentQuestionIndex: 0,
-        status: 'playing',
+        status: 'not-started',
         feedback: '',
     });
     
@@ -25,7 +25,6 @@ export const GameScene: FC = () => {
     const [answers, setAnswers] = useState<AnswerState[]>([]);
     const [potentialScore, setPotentialScore] = useState(30);
 
-    // generar bloques.
     const spawnAnswers = (questionIndex: number) => {
         const question = quizData[questionIndex];
         const newAnswers = question.options.map((option, i) => ({
@@ -37,13 +36,13 @@ export const GameScene: FC = () => {
         setAnswers(newAnswers);
     };
 
-    // cambio de pregunta
     useEffect(() => {
-        spawnAnswers(gameState.currentQuestionIndex);
-        setPotentialScore(30); // Reinicia la puntuación potencial para la nueva pregunta.
-    }, [gameState.currentQuestionIndex, viewport.width]);
+        if (gameState.status !== 'not-started') {
+            spawnAnswers(gameState.currentQuestionIndex);
+            setPotentialScore(30);
+        }
+    }, [gameState.status, gameState.currentQuestionIndex, viewport.width]);
     
-    // evento de disparo.
     const handleShoot = (event: ThreeEvent<globalThis.PointerEvent>) => {
         if (gameState.status !== 'playing') return;
         
@@ -55,7 +54,6 @@ export const GameScene: FC = () => {
         setProjectiles(prev => [...prev, newProjectile]);
     };
 
-    // colision con bloque de respuesta.
     const handleAnswerHit = (isCorrect: boolean) => {
         if (gameState.status !== 'playing') return;
 
@@ -77,15 +75,12 @@ export const GameScene: FC = () => {
             }, 1500);
 
         } else {
+            // CAMBIO: Si la respuesta es incorrecta, solo se reduce la puntuación potencial.
+            // El juego no se detiene ni muestra un feedback de "Incorrecto".
             setPotentialScore(prev => Math.max(0, prev - 10));
-            setGameState(prev => ({ ...prev, status: 'feedback', feedback: 'Incorrecto. ¡Intenta de nuevo!' }));
-            setTimeout(() => {
-                 setGameState(prev => ({ ...prev, status: 'playing', feedback: '' }));
-            }, 1500);
         }
     };
 
-    // bloques de respuesta llegaron al piso o colision con jugador
     const handleAnswerMiss = () => {
         if (gameState.status !== 'playing') return;
 
@@ -103,34 +98,59 @@ export const GameScene: FC = () => {
     
     const currentQuestion = quizData[gameState.currentQuestionIndex];
 
-    // reiniciar el juego.
     const resetGame = () => {
         setGameState({ score: 0, currentQuestionIndex: 0, status: 'playing', feedback: ''});
     }
 
+    const startGame = () => {
+        setGameState(prev => ({ ...prev, status: 'playing' }));
+    }
+
+    const handleSaveScore = () => {
+        console.log(`Puntuación guardada: ${gameState.score}`);
+        alert(`Puntuación de ${gameState.score} guardada (revisa la consola).`);
+    };
+
     return (
         <>
             <Html fullscreen style={{ pointerEvents: 'none' }}>
-                <div style={{
-                    width: '100%', height: '100%', fontFamily: 'Arial, sans-serif'
-                }}>
-                    <div style={{
-                        position: 'absolute', top: 0, left: 0, width: '100%', padding: '20px', color: 'white', 
-                        textAlign: 'center'
-                    }}>
-                        <h1 style={{ margin: 0, fontSize: '2em' }}>Quiz de Enfermedades Pulmonares</h1>
-                        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '10px', fontSize: '1.5em' }}>
-                            <span>Puntuación: {gameState.score}</span>
-                            <span>Pregunta: {gameState.currentQuestionIndex + 1} / {quizData.length}</span>
-                        </div>
-                        <h2 style={{ marginTop: '20px', minHeight: '50px' }}>
-                            {gameState.status !== 'gameOver' ? currentQuestion.question : ''}
-                        </h2>
-                        <div style={{ fontSize: '2em', color: 'yellow', minHeight: '40px' }}>{gameState.feedback}</div>
-                        {gameState.status === 'gameOver' && (
-                            <button onClick={resetGame} style={{padding: '10px 20px', fontSize: '1.2em', cursor: 'pointer', pointerEvents: 'auto'}}>
-                                Jugar de Nuevo
-                            </button>
+                <div style={{ width: '100%', height: '100%', fontFamily: 'Arial, sans-serif' }}>
+                    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', padding: '20px', color: 'white', textAlign: 'center' }}>
+                        
+                        {gameState.status === 'not-started' && (
+                             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '80vh'}}>
+                                <h1 style={{ margin: 0, fontSize: '2.5em' }}>Quiz de Enfermedades Pulmonares</h1>
+                                <button onClick={startGame} style={{padding: '15px 30px', fontSize: '1.5em', cursor: 'pointer', pointerEvents: 'auto', marginTop: '20px', borderRadius: '10px', border: 'none', background: 'gold', color: 'black'}}>
+                                    Iniciar Intento
+                                </button>
+                            </div>
+                        )}
+
+                        {gameState.status !== 'not-started' && (
+                            <>
+                                <h1 style={{ margin: 0, fontSize: '2em' }}>Quiz de Enfermedades Pulmonares</h1>
+                                <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '10px', fontSize: '1.5em' }}>
+                                    <span>Puntuación: {gameState.score}</span>
+                                    {/* AÑADIDO: Muestra los puntos que vale la pregunta actual */}
+                                    {gameState.status === 'playing' && <span>Puntos por Acertar: {potentialScore}</span>}
+                                    <span>Pregunta: {gameState.currentQuestionIndex + 1} / {quizData.length}</span>
+                                </div>
+                                <h2 style={{ marginTop: '20px', minHeight: '50px' }}>
+                                    {gameState.status !== 'gameOver' ? currentQuestion.question : ''}
+                                </h2>
+                                <div style={{ fontSize: '2em', color: 'yellow', minHeight: '40px' }}>{gameState.feedback}</div>
+                                
+                                {gameState.status === 'gameOver' && (
+                                    <div style={{marginTop: '20px'}}>
+                                        <button onClick={handleSaveScore} style={{padding: '10px 20px', fontSize: '1.2em', cursor: 'pointer', pointerEvents: 'auto', marginRight: '10px', background: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px'}}>
+                                            Guardar Puntuación
+                                        </button>
+                                        <button onClick={resetGame} style={{padding: '10px 20px', fontSize: '1.2em', cursor: 'pointer', pointerEvents: 'auto', background: '#f44336', color: 'white', border: 'none', borderRadius: '5px'}}>
+                                            Volver a Jugar
+                                        </button>
+                                    </div>
+                                )}
+                            </>
                         )}
                     </div>
                 </div>
@@ -139,38 +159,38 @@ export const GameScene: FC = () => {
             <Suspense fallback={null}>
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 10]} intensity={1} />
-                
-                {/* obtener clicks */}
                 <mesh onClick={handleShoot} position-z={-1}>
                     <planeGeometry args={[viewport.width, viewport.height]}/>
                     <meshBasicMaterial visible={false} />
                 </mesh>
 
-                {/* Contenedor de fisicas */}
-                <Physics gravity={[0, -1.5, 0]}>
+                <Physics gravity={[0, -1.5, 0]} paused={gameState.status === 'not-started'}>
                     <WorldBounds />
                     <Cannon onHitByAnswer={handleAnswerMiss} />
-
-                    {/* Renderiza proyectil */}
-                    {projectiles.map(p => (
-                        <Projectile 
-                            key={p.id} 
-                            position={p.position} 
-                            onRemove={() => setProjectiles(projs => projs.filter(proj => proj.id !== p.id))}
-                        />
-                    ))}
                     
-                    {/* Renderiza los bloques */}
-                    {(gameState.status === 'playing' || gameState.status === 'feedback') && answers.map(a => (
-                        <AnswerObject
-                            key={a.id}
-                            position={a.position}
-                            option={a.option}
-                            isCorrect={a.isCorrect}
-                            onHit={handleAnswerHit}
-                            onMiss={handleAnswerMiss}
-                        />
-                    ))}
+                    {/* CAMBIO: Ahora los objetos se renderizan también en el estado 'feedback' para que no desaparezcan al acertar */}
+                    {(gameState.status === 'playing' || gameState.status === 'feedback') && (
+                        <>
+                            {projectiles.map(p => (
+                                <Projectile 
+                                    key={p.id} 
+                                    position={p.position} 
+                                    onRemove={() => setProjectiles(projs => projs.filter(proj => proj.id !== p.id))}
+                                />
+                            ))}
+                            
+                            {answers.map(a => (
+                                <AnswerObject
+                                    key={a.id}
+                                    position={a.position}
+                                    option={a.option}
+                                    isCorrect={a.isCorrect}
+                                    onHit={handleAnswerHit}
+                                    onMiss={handleAnswerMiss}
+                                />
+                            ))}
+                        </>
+                    )}
                 </Physics>
             </Suspense>
         </>
