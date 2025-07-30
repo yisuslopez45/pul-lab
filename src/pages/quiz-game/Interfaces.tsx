@@ -1,11 +1,19 @@
 // --- DEFINICIONES DE TIPOS (TYPESCRIPT) ---
 
+// Estructura para los datos de progreso guardados.
+export interface SavedProgress {
+    score: number;
+    lastQuestionIndex: number; 
+    status: "not-finished" | "finished";
+    totalErrors: number; 
+}
 
 // Estado general del juego, puntuación y pregunta actual.
 export interface GameState {
     score: number;
     currentQuestionIndex: number;
-    status: 'not-started' | 'playing' | 'feedback' | 'gameOver';
+    // Se añade 'intermission' para la pantalla entre preguntas.
+    status: 'not-started' | 'playing' | 'intermission' | 'feedback' | 'gameOver';
     feedback: string;
 }
 
@@ -23,7 +31,7 @@ export interface AnswerState {
     position: [number, number, number];
 }
 
-// Props para  componente de bloque de respuesta.
+// Props para el componente de bloque de respuesta.
 export interface AnswerObjectProps {
     position: [number, number, number];
     option: string;
@@ -38,7 +46,7 @@ export interface ProjectileProps {
     onRemove: () => void; 
 }
 
-// Props para  jugador.
+// Props para el jugador.
 export interface CannonProps {
     onHitByAnswer: () => void;
 }
