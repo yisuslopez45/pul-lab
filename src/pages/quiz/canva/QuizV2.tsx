@@ -10,38 +10,38 @@ import Button from "../../../layout/components/Button";
 import { ChevronLeft, ChevronRight, Save } from "lucide-react";
 import useStoreQuiz from "../store/useStoreQuiz";
 import AlertText3D from "../../disease-pneumonia/texts/AlertText3D";
-import { saveQuiz } from "../services/service_db";
-import { useAuthStore } from "../../../store/authStore";
+// import { saveQuiz } from "../services/service_db";
+// import { useAuthStore } from "../../../store/authStore";
 
 
 const QuizV2 = () => {
     
-    const { userLooged } = useAuthStore()
+    // const { userLooged } = useAuthStore()
     const [isLoading, setIsLoading] = useState(false);
-    const { questions, setIndexQuestion, indexQuestion, getQuestion , resetStore } = useStoreQuiz()
+    const { questions, setIndexQuestion, indexQuestion, getQuestion  } = useStoreQuiz()
 
     const handleClick = async() => {
         setIsLoading(true);
-        const answers = Object.fromEntries(
-            questions.map((item, index) => [
-                `respuesta_${index + 1}`,
-                item.correct === item.selected
-            ])
-        );
+        // const answers = Object.fromEntries(
+        //     questions.map((item, index) => [
+        //         `respuesta_${index + 1}`,
+        //         item.correct === item.selected
+        //     ])
+        // );
 
-        let qualification = Object.values(answers).filter(val => val).length 
+        // let qualification = Object.values(answers).filter(val => val).length 
         
-        const success = await saveQuiz({
-            user: userLooged!,
-            qualification: qualification,
-            answers: answers
-        })
+        // const success = await saveQuiz({
+        //     user: userLooged!,
+        //     qualification: qualification,
+        //     answers: answers
+        // })
 
         setIsLoading(false);
 
-        if(success){
-            resetStore()
-        }
+        // if(success){
+        //     resetStore()
+        // }
     }
 
     return (
