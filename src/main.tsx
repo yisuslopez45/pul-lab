@@ -36,7 +36,7 @@ import SymptomsTuberculosis from './pages/disease-tuberculosis/components/Sympto
 import TreatmentTuberculosis from './pages/disease-tuberculosis/components/Treatment'
 import Tuberculosis from './pages/disease-tuberculosis/Tuberculosis'
 import Profile from './pages/profile/Profile'
-/* import Quiz from './pages/quiz/Quiz' */
+//import Quiz from './pages/quiz/Quiz'
 
 import QuizGame from './pages/quiz-game/QuizGame'
 import Resultado from './pages/quiz/Resultado'
