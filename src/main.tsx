@@ -7,6 +7,7 @@ import App from './App'
 import Pneumonia from './pages/disease-pneumonia/Pneumonia'
 import LungCancer from './pages/disease-cancer/LungCancer'
 import NotFound from './pages/not-found/NotFound'
+import SiteMap from "./pages/site-map";
 
 // Pneumonia
 import WhatIsPneumonia from './pages/disease-pneumonia/components/WhatIs'
@@ -51,6 +52,7 @@ createRoot(document.getElementById('root')!).render(
       {/* <Route path="/quiz" element={<Quiz />} /> */}
       <Route path="/quiz" element={<QuizGame />} />
       <Route path="/resultados" element={<Resultado />} />
+      <Route path="/site-map" element={<SiteMap />} />
 
        {/* Rutas para Cáncer de Pulmón */}
        <Route path="/enfermedad-cancer" element={<LungCancer />}>
