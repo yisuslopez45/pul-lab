@@ -26,17 +26,8 @@ const Profile = () => {
     fetchAttempts();
   }, [userLooged]);
 
-  const totalAciertos = attempts.reduce((acc, curr) => {
-    const respuestas = Object.values(curr.answers);
-    const aciertos = respuestas.filter((v) => v === true).length;
-    return acc + aciertos;
-  }, 0);
-
-  const totalErrores = attempts.reduce((acc, curr) => {
-    const respuestas = Object.values(curr.answers);
-    const aciertos = respuestas.filter((v) => v === false).length;
-    return acc + aciertos;
-  }, 0);
+  const totalScore = attempts.reduce((acc, curr) => acc + curr.score, 0);
+  const totalErrores = attempts.reduce((acc, curr) => acc + curr.totalErrors, 0);
 
 
 
@@ -84,7 +75,7 @@ const Profile = () => {
                   />
                   <StatBar
                     label="ACIERTOS"
-                    value={totalAciertos}
+                    value={totalScore}
                     icon={<Sword className="w-5 h-5" />}
                     color="red"
                   />
@@ -113,7 +104,7 @@ const Profile = () => {
                     PUNTUACION
                   </h4>
                   <p className="text-sm text-gray-300">
-                    +{totalAciertos } ACIERTOS, +{totalErrores} ERRORES
+                    +{totalScore } ACIERTOS, +{totalErrores} ERRORES
                   </p>
                 </div>
               </div>
