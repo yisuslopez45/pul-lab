@@ -41,6 +41,7 @@ import Profile from './pages/profile/Profile'
 
 import QuizGame from './pages/quiz-game/QuizGame'
 import Resultado from './pages/quiz/Resultado'
+import Custom3DScene from './pages/disease-asthma/canvas/VideoAsthmaCanva'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -78,6 +79,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="prevencion" element={<PreventionAsthma />} />
           <Route path="sintomas" element={<SymptomsAsthma />} />
           <Route path="tratamiento" element={<TreatmentAsthma />} />
+          <Route path="video" element={<Custom3DScene />} />
         </Route>
 
         <Route path="/enfermedad-tuberculosis" element={<Tuberculosis />}>
