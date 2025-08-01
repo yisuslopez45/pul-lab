@@ -22,7 +22,7 @@ const Resultado = () => {
             <div >
               <div className="flex justify-between gap-4 mb-4 px-2 text-white font-bold">
                 <div className="text-lg">JUGADOR</div>
-                <div className="text-lg">PUNTUACION</div>
+                <div className="text-lg">PUNTUACIÓN</div>
               </div>
 
               <div className="space-y-4 px-2">
@@ -32,7 +32,7 @@ const Resultado = () => {
                     <div className="flex gap-4 items-center px-3" >
                       <div className="w-12 h-12 border-4 border-lila-200 rounded-lg">
                         <img
-                          src={`${result.photo}`}
+                          src={`${result.photoUrl}`}
                           alt="Logo de React"
                           width="200"
                           className="w-full h-full object-cover"
@@ -58,7 +58,7 @@ const Resultado = () => {
             </div>
           )}
         </div>    
-        <PodiumCanva />  
+        <PodiumCanva winnersData={data} />  
       </div>
     </div>
   )
