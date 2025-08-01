@@ -18,7 +18,7 @@ const Resultado = () => {
             <Spinner />
           )}
 
-          {loading && (
+          {!loading && (
             <div >
               <div className="flex justify-between gap-4 mb-4 px-2 text-white font-bold">
                 <div className="text-lg">JUGADOR</div>
