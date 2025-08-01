@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import KitAsthmaCanva from "../canvas/KitasthmaCanva"
+import KitAsthmaCanva from "../canvas/KitAsthmaCanva"
 
 const Prevention = () => {
   return (
