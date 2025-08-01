@@ -3,7 +3,7 @@ import { getAllUsersWithAttempts } from "../services/service_db";
 
 interface Atttemps {
     name: string;
-    photo: string;
+    photoUrl: string;
     qualificationAverage: number;
 }
 
@@ -18,12 +18,12 @@ export const useAttemptsAll = () => {
                 const attemptsFormat = attempts.map((item) => {
 
                     const name = item.attempts[0].data.name_user ?? "No tiene";
-                    const photo = item.attempts[0].data.photo_user ?? "Sin foto";
+                    const photoUrl = item.attempts[0].data.photo_user ?? "Sin foto";
                     const qualificationAverage = item.attempts.reduce((acc, curr) => acc + curr.data.score, 0);
 
                     return {
                         name,
-                        photo,
+                        photoUrl,
                         qualificationAverage,
                     };
                 }).sort((a, b) => b.qualificationAverage - a.qualificationAverage);

@@ -36,7 +36,7 @@ const SignIn = ({ onAction }: SignProps) => {
                 src="/images/Google.png"
                 className="w-52 h-52 m-auto"
             ></img>
-            <div className="mt-6 flex justify-center">
+            <div className="mt-6 flex justify-center z-20">
                 {!userLooged
                     ? (
                         <Button onClick={handleLogin} label="Iniciar con Goolge" color="amber" />
