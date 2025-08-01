@@ -1,3 +1,5 @@
+import { Suspense } from "react"
+import KitAsthmaCanva from "../canvas/KitAsthmaCanva"
 
 const Prevention = () => {
   return (
@@ -21,6 +23,10 @@ const Prevention = () => {
             <li className="list-disc"><b>Vacunarse:</b> contra la gripe y neumonía para evitar infecciones respiratorias que pueden agravar el asma.</li>
             <li className="list-disc"><b>Ejercicio controlado:</b> con calentamiento y supervisión médica, ya que el ejercicio también puede ser beneficioso si se maneja adecuadamente.</li>
           </ul><br />
+
+          <Suspense fallback={<div className="text-center text-indigo-300 mt-8">Cargando modelo...</div>}>
+            <KitAsthmaCanva/>
+          </Suspense>
         </div>
       </div>
     </>

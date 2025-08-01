@@ -1,4 +1,4 @@
-import { TestTube2, LucideShieldQuestion , Pill , Carrot } from "lucide-react";
+import { TestTube2, LucideShieldQuestion , Pill , Carrot, Camera } from "lucide-react";
 import NavigationBars from "../../layout/components/NavigationBars";
 import { Outlet } from "react-router";
 
@@ -9,6 +9,7 @@ const Asthma  = () => {
     { to: "sintomas", label: "Sintomas" ,  icon: <TestTube2 className="w-6 h-6" />  },
     { to: "tratamiento", label: "Tratamiento" ,  icon: <Pill className="w-6 h-6" />   },
     { to: "prevencion", label: "Prevencion" ,  icon: <Carrot className="w-6 h-6" /> },
+    { to: "video", label: "Video" ,  icon: <Camera className="w-6 h-6" /> },
   ]
 
   return (
